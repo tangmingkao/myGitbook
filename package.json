@@ -1,0 +1,24 @@
+{
+    "name": "mygitbook",
+    "version": "1.0.0",
+    "description": "gitbook 的安装非常简单，详细指南可以参考 gitbook 文档。",
+    "main": "index.js",
+    "dependencies": {
+        "gh-pages": "^2.2.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "deploy": "gh-pages -d _book",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tangmingkao/myGitbook.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/tangmingkao/myGitbook/issues"
+    },
+    "homepage": "https://github.com/tangmingkao/myGitbook#readme"
+}
