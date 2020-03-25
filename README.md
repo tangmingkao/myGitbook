@@ -95,3 +95,33 @@ Serving book on http://localhost:4000
 gitbook serve 命令实际上会首先调用 gitbook build 编译书籍，完成以后会打开一个 web 服务器，监听在本地的 4000 端口。
 
 现在，可以用浏览器打开 http://127.0.0.1:4000 查看书籍的效果
+
+## gitbook 部署到 gitpages 上
+
+gitbook 可以直接部署到 gitpages 页面上。因为每个 github 项目都提供了一个 gh-pages 分支去在线浏览项目效果
+
+简单部署方案利用 gh-pages 库一键部署
+
+安装 gh-pages 库
+
+```javascript
+npm install gh-pages
+```
+
+在 package.json 文件中编写命令
+
+```javascript
+"deploy": "gh-pages -d _book"
+```
+
+然后先构建生成\_book 文件夹
+
+```javascript
+gitbook build
+```
+
+再部署
+
+```javascript
+npm run deply
+```
