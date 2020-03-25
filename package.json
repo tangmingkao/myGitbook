@@ -8,7 +8,7 @@
     },
     "devDependencies": {},
     "scripts": {
-        "deploy": "gh-pages -d build",
+        "deploy": "gh-pages -d _book",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
