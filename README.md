@@ -125,3 +125,6 @@ gitbook build
 ```javascript
 npm run deply
 ```
+
+打开地址
+https://username.github.io/projectName(myGitbook)
