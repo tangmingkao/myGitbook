@@ -125,7 +125,7 @@ gitbook build
 再部署
 
 ```javascript
-npm run deply
+npm run deploy
 ```
 
 打开地址
