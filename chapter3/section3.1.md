@@ -87,3 +87,55 @@ vue 检测数组的变化有 2 个方面
 1. 初始化的时候调用 mergeOptions 函数进行属性合并。利用策略模式进行不通的合并策略。
 
 2. callHook 函数触发钩子函数。首先从实例的\$options 中获取到需要触发的钩子名称所对应的钩子函数数组 handlers，然后遍历该数组，将数组中的每个钩子函数都执行一遍。
+
+##### 请说下 v-if 和 v-show 的区别
+
+v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。
+v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。
+相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。
+一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。
+
+> 注：最好不能将 v-if 和 v-for 一起使用，因为 v-for 具有更高的优先级。那么 v-if 将会重复运行到每个 v-for 的循环上，造成更高的开销。
+
+##### Vue.use 是干什么的？原理是什么？
+
+安装 Vue.js 插件。如果插件是一个对象，必须提供 install 方法。如果插件是一个函数，它会被作为 install 方法。install 方法调用时，会将 Vue 作为参数传入。该方法需要在调用 new Vue() 之前被调用。当 install 方法被同一个插件多次调用，插件将只会被安装一次。
+
+原理：
+
+1. 该变量初始值是一个空数组，用来存储已安装过的插件。首先判断传入的插件是否存在于 installedPlugins 数组中（即已被安装过），如果存在的话，则直接返回，防止重复安装。
+
+2. 接下来获取到传入的其余参数，并且使用 toArray 方法将其转换成数组，同时将 Vue 插入到该数组的第一个位置，这是因为在后续调用 install 方法时，Vue 必须作为第一个参数传入。
+
+3. 首先，判断传入的插件如果是一个提供了 install 方法的对象，那么就执行该对象中提供的 install 方法并传入参数完成插件安装。如果传入的插件是一个函数，那么就把这个函数当作 install 方法执行，同时传入参数完成插件安装。
+
+4. 插件安装完成之后，将该插件添加进已安装插件列表 installedPlugins 中，防止重复安装。
+
+##### Vue-router 有几种钩子函数？具体试什么以及执行流程是怎么样的？
+
+钩子函数种类： 1. 全局前置守卫：beforeEach 。 2. 2.5.0+版本全局守卫： beforeResolve 。 3. 全局后置钩子：afterEach 。 4. 路由独享的守卫： beforeEnter。 5. 组件内： beforeRouteEnter，beforeRouteUpdate ，beforeRouteLeave 。
+
+完整的导航解析流程：
+
+1. 导航被触发
+2. 在失活的组件里调用 beforeRouteLeave 守卫。
+3. 调用全局的 beforeEach 守卫。
+4. 在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。
+5. 在路由配置里调用 beforeEnter。
+6. 解析异步路由组件。
+7. 在被激活的组件里调用 beforeRouteEnter。
+8. 调用全局的 beforeResolve 守卫 (2.5+)。
+9. 导航被确认。
+10. 调用全局的 afterEach 钩子。
+11. 触发 DOM 更新。
+12. 调用 beforeRouteEnter 守卫中传给 next 的回调函数，创建好的组件实例会作为回调函数的参数传入。
+
+##### Vue-router 的 2 种模式的区别？
+
+vue-router 有 2 种模式，分别是 hash 模式和 history 模式。 hash 模式是使用使用 URL hash 值来作路由。支持所有浏览器。history 模式依赖 HTML5 History API 和服务器配置。hash 模式 url 带有"#",history 模式不带"#"号。history 模式需要后端支持。例如 nginx 的配置：
+
+```javascript
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
