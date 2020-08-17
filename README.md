@@ -78,6 +78,8 @@ $ tree
 
 ## gitbook serve
 
+> 如果运行 gitbook serve 失败，则可能是由于杀毒软件导致。关闭杀毒软件。
+
 书籍目录结构创建完成以后，就可以使用 gitbook serve 来编译和预览书籍了：
 
 ```javascript
