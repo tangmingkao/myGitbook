@@ -139,3 +139,22 @@ location / {
   try_files $uri $uri/ /index.html;
 }
 ```
+
+##### Vue 函数式组件的优势及原理？
+
+函数式组件的定义：
+
+1. Stateless(无状态)：组件自身是没有状态的
+2. Instanceless(无实例)：组件自身没有实例，也就是没有 this
+
+优势：
+
+基于函数式组件的特点，所以它比一般的组件具有更快的渲染，更低的渲染销低。更加灵活，可以利用函数式组件包装复杂组件。
+
+原理：
+
+组件在 Vue 实例化时会先执行 createComponent()函数，在该函数内执行 extractPropsFromVNodeData(data, Ctor, tag)从组件的基础构造器上获取到 props 信息后就会判断 options.functional 是否为 true,如果为 true 则执行 createFunctionalComponent 函数。
+
+##### v-if 和 v-for 的优先级？
+
+v-for 具有更高的优先级。所以如果 v-if 和 v-for 一起使用， v-if 将会重复运行到每个 v-for 的循环上，造成更高的开销。
