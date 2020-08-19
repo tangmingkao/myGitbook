@@ -158,3 +158,74 @@ location / {
 ##### v-if 和 v-for 的优先级？
 
 v-for 具有更高的优先级。所以如果 v-if 和 v-for 一起使用， v-if 将会重复运行到每个 v-for 的循环上，造成更高的开销。
+
+##### 组件中写name选项有那些好处及作用？
+
+1. 允许组件模板递归地调用自身。
+2. 便于调试,有名字的组件有更友好的警告信息。另外，当在有 vue-devtools，未命名组件将显示成 <AnonymousComponent>，这很没有语义。通过提供 name 选项，可以获得更有语义信息的组件树。
+
+##### Vue事件修饰符有哪些？其实现原理是什么？
+
+| 事件装饰符 | 按键修饰符 | 系统修饰键| 鼠标按钮修饰符 ｜
+| ------------------------| -------------    | -------- | ---------------|
+| .stop  阻止单击事件继续传播 | .enter           | .ctrl     | .left        |
+| .prevent 阻止默认事件      | .page-down         | .alt    | .right       |
+| .capture 使用事件捕获模式  | .tab             | .shift    | .middle      |
+| .self 只在自己身上触发     | .space           | .meta     |              |
+| .once 只执行一次          | .right           | .exact    |              |
+| .passive 滚动事件的默认行为 | 等等。包括按键码    | 等等      |              | 
+
+原理:
+
+###### 建立一个映射表
+
+```javascript
+// keyCode aliases
+const modifierCode = {
+  stop: '$event.stopPropagation();',
+  prevent: '$event.preventDefault();',
+  self: genGuard(`$event.target !== $event.currentTarget`),
+  ctrl: genGuard(`!$event.ctrlKey`),
+  shift: genGuard(`!$event.shiftKey`),
+  alt: genGuard(`!$event.altKey`),
+  meta: genGuard(`!$event.metaKey`),
+  left: genGuard(`'button' in $event && $event.button !== 0`),
+  middle: genGuard(`'button' in $event && $event.button !== 1`),
+  right: genGuard(`'button' in $event && $event.button !== 2`)
+}
+```
+
+```javascript
+// keyCode aliases
+const keyCodes = {
+  esc: 27,
+  tab: 9,
+  enter: 13,
+  space: 32,
+  up: 38,
+  left: 37,
+  right: 39,
+  down: 40,
+  'delete': [8, 46]
+}
+
+```
+
+然后找到对应的处理函数 genHandler函数
+
+```javascript
+if (!handler.modifiers) {
+    return isMethodPath || isFunctionExpression
+      ? handler.value
+      : `function($event){${handler.value}}` // inline statement
+} else {
+    let code = ''
+    let genModifierCode = ''
+    const keys = []
+} else {
+  //等等。。。
+}
+```
+
+
+
