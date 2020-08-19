@@ -411,6 +411,101 @@ v-if &#x4E5F;&#x662F;&#x60F0;&#x6027;&#x7684;&#xFF1A;&#x5982;&#x679C;&#x5728;&#x
 <p>&#x7EC4;&#x4EF6;&#x5728; Vue &#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#x4F1A;&#x5148;&#x6267;&#x884C; createComponent()&#x51FD;&#x6570;&#xFF0C;&#x5728;&#x8BE5;&#x51FD;&#x6570;&#x5185;&#x6267;&#x884C; extractPropsFromVNodeData(data, Ctor, tag)&#x4ECE;&#x7EC4;&#x4EF6;&#x7684;&#x57FA;&#x7840;&#x6784;&#x9020;&#x5668;&#x4E0A;&#x83B7;&#x53D6;&#x5230; props &#x4FE1;&#x606F;&#x540E;&#x5C31;&#x4F1A;&#x5224;&#x65AD; options.functional &#x662F;&#x5426;&#x4E3A; true,&#x5982;&#x679C;&#x4E3A; true &#x5219;&#x6267;&#x884C; createFunctionalComponent &#x51FD;&#x6570;&#x3002;</p>
 <h5 id="v-if-&#x548C;-v-for-&#x7684;&#x4F18;&#x5148;&#x7EA7;&#xFF1F;">v-if &#x548C; v-for &#x7684;&#x4F18;&#x5148;&#x7EA7;&#xFF1F;</h5>
 <p>v-for &#x5177;&#x6709;&#x66F4;&#x9AD8;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x3002;&#x6240;&#x4EE5;&#x5982;&#x679C; v-if &#x548C; v-for &#x4E00;&#x8D77;&#x4F7F;&#x7528;&#xFF0C; v-if &#x5C06;&#x4F1A;&#x91CD;&#x590D;&#x8FD0;&#x884C;&#x5230;&#x6BCF;&#x4E2A; v-for &#x7684;&#x5FAA;&#x73AF;&#x4E0A;&#xFF0C;&#x9020;&#x6210;&#x66F4;&#x9AD8;&#x7684;&#x5F00;&#x9500;&#x3002;</p>
+<h5 id="&#x7EC4;&#x4EF6;&#x4E2D;&#x5199;name&#x9009;&#x9879;&#x6709;&#x90A3;&#x4E9B;&#x597D;&#x5904;&#x53CA;&#x4F5C;&#x7528;&#xFF1F;">&#x7EC4;&#x4EF6;&#x4E2D;&#x5199;name&#x9009;&#x9879;&#x6709;&#x90A3;&#x4E9B;&#x597D;&#x5904;&#x53CA;&#x4F5C;&#x7528;&#xFF1F;</h5>
+<ol>
+<li>&#x5141;&#x8BB8;&#x7EC4;&#x4EF6;&#x6A21;&#x677F;&#x9012;&#x5F52;&#x5730;&#x8C03;&#x7528;&#x81EA;&#x8EAB;&#x3002;</li>
+<li>&#x4FBF;&#x4E8E;&#x8C03;&#x8BD5;,&#x6709;&#x540D;&#x5B57;&#x7684;&#x7EC4;&#x4EF6;&#x6709;&#x66F4;&#x53CB;&#x597D;&#x7684;&#x8B66;&#x544A;&#x4FE1;&#x606F;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x5F53;&#x5728;&#x6709; vue-devtools&#xFF0C;&#x672A;&#x547D;&#x540D;&#x7EC4;&#x4EF6;&#x5C06;&#x663E;&#x793A;&#x6210; <anonymouscomponent>&#xFF0C;&#x8FD9;&#x5F88;&#x6CA1;&#x6709;&#x8BED;&#x4E49;&#x3002;&#x901A;&#x8FC7;&#x63D0;&#x4F9B; name &#x9009;&#x9879;&#xFF0C;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;&#x66F4;&#x6709;&#x8BED;&#x4E49;&#x4FE1;&#x606F;&#x7684;&#x7EC4;&#x4EF6;&#x6811;&#x3002;</anonymouscomponent></li>
+</ol>
+<h5 id="vue&#x4E8B;&#x4EF6;&#x4FEE;&#x9970;&#x7B26;&#x6709;&#x54EA;&#x4E9B;&#xFF1F;&#x5176;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;">Vue&#x4E8B;&#x4EF6;&#x4FEE;&#x9970;&#x7B26;&#x6709;&#x54EA;&#x4E9B;&#xFF1F;&#x5176;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</h5>
+<table>
+<thead>
+<tr>
+<th>&#x4E8B;&#x4EF6;&#x88C5;&#x9970;&#x7B26;</th>
+<th>&#x6309;&#x952E;&#x4FEE;&#x9970;&#x7B26;</th>
+<th>&#x7CFB;&#x7EDF;&#x4FEE;&#x9970;&#x952E;</th>
+<th>&#x9F20;&#x6807;&#x6309;&#x94AE;&#x4FEE;&#x9970;&#x7B26; &#xFF5C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.stop  &#x963B;&#x6B62;&#x5355;&#x51FB;&#x4E8B;&#x4EF6;&#x7EE7;&#x7EED;&#x4F20;&#x64AD;</td>
+<td>.enter</td>
+<td>.ctrl</td>
+<td>.left</td>
+</tr>
+<tr>
+<td>.prevent &#x963B;&#x6B62;&#x9ED8;&#x8BA4;&#x4E8B;&#x4EF6;</td>
+<td>.page-down</td>
+<td>.alt</td>
+<td>.right</td>
+</tr>
+<tr>
+<td>.capture &#x4F7F;&#x7528;&#x4E8B;&#x4EF6;&#x6355;&#x83B7;&#x6A21;&#x5F0F;</td>
+<td>.tab</td>
+<td>.shift</td>
+<td>.middle</td>
+</tr>
+<tr>
+<td>.self &#x53EA;&#x5728;&#x81EA;&#x5DF1;&#x8EAB;&#x4E0A;&#x89E6;&#x53D1;</td>
+<td>.space</td>
+<td>.meta</td>
+<td></td>
+</tr>
+<tr>
+<td>.once &#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;</td>
+<td>.right</td>
+<td>.exact</td>
+<td></td>
+</tr>
+<tr>
+<td>.passive &#x6EDA;&#x52A8;&#x4E8B;&#x4EF6;&#x7684;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;</td>
+<td>&#x7B49;&#x7B49;&#x3002;&#x5305;&#x62EC;&#x6309;&#x952E;&#x7801;</td>
+<td>&#x7B49;&#x7B49;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x539F;&#x7406;:</p>
+<h6 id="&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x6620;&#x5C04;&#x8868;">&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x6620;&#x5C04;&#x8868;</h6>
+<pre><code class="lang-javascript"><span class="hljs-comment">// keyCode aliases</span>
+<span class="hljs-keyword">const</span> modifierCode = {
+  stop: <span class="hljs-string">&apos;$event.stopPropagation();&apos;</span>,
+  prevent: <span class="hljs-string">&apos;$event.preventDefault();&apos;</span>,
+  self: genGuard(<span class="hljs-string">`$event.target !== $event.currentTarget`</span>),
+  ctrl: genGuard(<span class="hljs-string">`!$event.ctrlKey`</span>),
+  shift: genGuard(<span class="hljs-string">`!$event.shiftKey`</span>),
+  alt: genGuard(<span class="hljs-string">`!$event.altKey`</span>),
+  meta: genGuard(<span class="hljs-string">`!$event.metaKey`</span>),
+  left: genGuard(<span class="hljs-string">`&apos;button&apos; in $event &amp;&amp; $event.button !== 0`</span>),
+  middle: genGuard(<span class="hljs-string">`&apos;button&apos; in $event &amp;&amp; $event.button !== 1`</span>),
+  right: genGuard(<span class="hljs-string">`&apos;button&apos; in $event &amp;&amp; $event.button !== 2`</span>)
+}
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">// keyCode aliases</span>
+<span class="hljs-keyword">const</span> keyCodes = {
+  esc: <span class="hljs-number">27</span>,
+  tab: <span class="hljs-number">9</span>,
+  enter: <span class="hljs-number">13</span>,
+  space: <span class="hljs-number">32</span>,
+  up: <span class="hljs-number">38</span>,
+  left: <span class="hljs-number">37</span>,
+  right: <span class="hljs-number">39</span>,
+  down: <span class="hljs-number">40</span>,
+  <span class="hljs-string">&apos;delete&apos;</span>: [<span class="hljs-number">8</span>, <span class="hljs-number">46</span>]
+}
+</code></pre>
+<p>&#x7136;&#x540E;&#x627E;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x5904;&#x7406;&#x51FD;&#x6570; genHandler&#x51FD;&#x6570;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (!handler.modifiers) {
+    <span class="hljs-keyword">return</span> isMethodPath || isFunctionExpression
+      ? handler.value
+      : <span class="hljs-string">`function($event){<span class="hljs-subst">${handler.value}</span>}`</span> <span class="hljs-comment">// inline statement</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">let</span> code = <span class="hljs-string">&apos;&apos;</span>
+    <span class="hljs-keyword">let</span> genModifierCode = <span class="hljs-string">&apos;&apos;</span>
+    <span class="hljs-keyword">const</span> keys = []
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">//&#x7B49;&#x7B49;&#x3002;&#x3002;&#x3002;</span>
+}
+</code></pre>
 
                                 
                                 </section>
@@ -454,7 +549,7 @@ v-if &#x4E5F;&#x662F;&#x60F0;&#x6027;&#x7684;&#xFF1A;&#x5982;&#x679C;&#x5728;&#x
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Vue 相关","level":"1.4.1","depth":2,"next":{"title":"Section3.2","level":"1.4.2","depth":2,"path":"chapter3/section3.2.md","ref":"chapter3/section3.2.md","articles":[]},"previous":{"title":"每日面试题","level":"1.4","depth":1,"path":"chapter3/README.md","ref":"chapter3/README.md","articles":[{"title":"Vue 相关","level":"1.4.1","depth":2,"path":"chapter3/section3.1.md","ref":"chapter3/section3.1.md","articles":[]},{"title":"Section3.2","level":"1.4.2","depth":2,"path":"chapter3/section3.2.md","ref":"chapter3/section3.2.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Tony Tang","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Sample GitBook","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"This is a sample book created by gitbook","extension":null},"file":{"path":"chapter3/section3.1.md","mtime":"2020-08-18T06:10:59.114Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-18T06:47:40.022Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Vue 相关","level":"1.4.1","depth":2,"next":{"title":"Section3.2","level":"1.4.2","depth":2,"path":"chapter3/section3.2.md","ref":"chapter3/section3.2.md","articles":[]},"previous":{"title":"每日面试题","level":"1.4","depth":1,"path":"chapter3/README.md","ref":"chapter3/README.md","articles":[{"title":"Vue 相关","level":"1.4.1","depth":2,"path":"chapter3/section3.1.md","ref":"chapter3/section3.1.md","articles":[]},{"title":"Section3.2","level":"1.4.2","depth":2,"path":"chapter3/section3.2.md","ref":"chapter3/section3.2.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Tony Tang","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Sample GitBook","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"This is a sample book created by gitbook","extension":null},"file":{"path":"chapter3/section3.1.md","mtime":"2020-08-19T16:32:28.795Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-19T16:33:34.026Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
