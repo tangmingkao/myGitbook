@@ -225,3 +225,7 @@ if (!handler.modifiers) {
   //等等。。。
 }
 ```
+
+##### Vue.directive 的源码实现
+
+##### 如何理解自定义指令
