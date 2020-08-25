@@ -229,3 +229,21 @@ if (!handler.modifiers) {
 ##### Vue.directive 的源码实现
 
 ##### 如何理解自定义指令
+
+
+##### 谈一下你对Vuex的个人理解
+
+Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。他解决的问题是vue中状态的管理。它的核心模块有State，Getter,Mutation,Action,Module.
+1. State 单一状态,作为vuex中的一个“唯一数据源 ”。
+2. Getter 需要从 store 中的 state 中派生出一些状态。就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
+3. 更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。Vuex 中的 mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。
+> mutation 必须是同步操作
+4. (1)Action 提交的是 mutation，而不是直接变更状态。(2)Action 可以包含任意异步操作。
+5. Module 由于使用单一状态树，应用的所有状态会集中到一个比较大的对象。当应用变得非常复杂时，store 对象就有可能变得相当臃肿。为了解决以上问题，Vuex 允许我们将 store 分割成模块（module）。
+
+##### Vue中slot是如何实现的？什么时候使用它？
+
+1. 编译： 当解析到标签上有 slot 属性的时候，会给对应的 AST 元素节点添加 slotTarget 属性，如果是普通插槽，就直接调用函数生成 vnode，如果是作用域插槽，就直接带着props去调用函数生成 vnode。
+2. 更新： 生产render函数，然后就是vue的更新原则。触发update去更新视图。
+
+使用情形： 在开发组件库或者组件的时候，为了让组件更加灵活可定制，经常用插槽的方式让用户可以自定义内容。
