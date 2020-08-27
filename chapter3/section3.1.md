@@ -263,3 +263,33 @@ Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用�
 Vue2 中的变化侦测实现对 Object 及 Array 分别进行了不同的处理，Objcet 使用了 Object.defineProperty API ，Array 使用了拦截器对 Array 原型上的能够改变数据的方法进行拦截。虽然也实现了数据的变化侦测，但存在很多局限 ，比如对象新增属性无法被侦测，以及通过数组下边修改数组内容，也因此在 Vue2 中经常会使用到 \$set 这个方法对数据修改，以保证依赖更新。
 
 Vue3 中使用了 es6 的 Proxy API 对数据代理，没有像 Vue2 中对原数据进行修改，只是加了代理包装，因此首先性能上会有所改善。其次解决了 Vue2 中变化侦测的局限性，可以不使用\$set 新增的对象属性及通过下标修改数组都能被侦测到。
+
+##### .aync 修饰符的作用，用法以及实现原理
+
+作用： 子组件更新父组件数据。是 update:myPropName 的模式触发事件的一种简写。
+
+用法：
+
+```javascript
+//父组件
+<text-document v-bind:title.sync="doc.title"></text-document>
+//子组件
+this.$emit('update:title', newTitle)
+```
+
+原理：
+
+在 parse 的时候在 processAttrs 函数中循环 attrsList 的时候判断如果有 modifiers.sync 存在，则增加一个 handle。名字加上约定好的"updata:"。这样在子组件触发 emit 的时候就会触发这个 handle 的回调更改父组件里的属性值。
+
+##### 谈一谈你对 Vue 性能优化的理解
+
+1. 对路由组件进行懒加载
+2. 扁平化data中的属性。因为vue观测数据是通过递归去观测的。层级越高就需要递归更多次。
+3. 对一些不是经常更改状态的元素采用v-if代替v-show。减少dom。
+4. 对高频更新的数据采用批量更新。例如一些高频的websocket推送数据，采用缓存列表批量更新。
+5. 为列表数据添加key值。key值最好用唯一id而不是index。以便更快的定位diff。用index的话，如果向列表头部添加一个数据，会导致整个列表index变化。
+6. 减少watch的数据。当watch的数据比较小，性能消耗不明显。当数据变大，系统会出现卡顿。
+7. 内容类系统的图片资源按需加载，图片加载比较多的时候可以用懒加载。
+8. tab切换可以利用keep-alive缓存组件
+9. 打包优化，gzip压缩，代码分割。第三方插件走cdn等。
+10. 
