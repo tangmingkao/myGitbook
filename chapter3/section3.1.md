@@ -272,9 +272,9 @@ Vue3 中使用了 es6 的 Proxy API 对数据代理，没有像 Vue2 中对原�
 
 ```javascript
 //父组件
-<text-document v-bind:title.sync="doc.title"></text-document>
+//<text-document v-bind:title.sync="doc.title"></text-document>
 //子组件
-this.$emit('update:title', newTitle)
+//this.$emit('update:title', newTitle)
 ```
 
 原理：
