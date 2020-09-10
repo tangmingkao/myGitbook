@@ -12,6 +12,36 @@ $ npm install gitbook -g
 
 需要注意的是：用户首先需要安装 nodejs，以便能够使用 npm 来安装 gitbook。
 
+## 卸载方法
+
+1. 找到 C:\Users\{User}\.gitbook 找到并删除此文件夹
+
+2. npm uninstall -g gitbook
+
+3. npm uninstall -g gitbook-cli
+
+4. --- 清除 npm 缓存 npm cache clean --force
+
+## 新版安装方法
+
+```javascript
+npm install -g gitbook-cli
+
+```
+
+## 可能存在运行 gitbook serve 或者别的命令时报错
+
+例如运行 gitbook serve 报:
+
+```javascript
+
+    C:\Users\mingkao.tang\AppData\Roaming\npm\node_modules\gitbook-cli\node_modules\npm\node_modules\graceful-fs\polyfills.js:287
+    if (cb) cb.apply(this, arguments)
+
+```
+
+这种错误一般时一些版本不兼容导致的。例如上面的报错 node 的版本和 gitbook-cli 中安装的 graceful-fs 的版本不兼容导致的。gitbook-cli 默认安装的 graceful-fs 的版本时 4.2.4 。需要降级到 4.1.1 的版本。
+
 ## 基本使用
 
 gitbook 的基本用法非常简单，基本上就只有两步：
