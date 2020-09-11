@@ -73,6 +73,68 @@ promise.then(onFulfilled, onRejected);
 
 2.2.6 then 可能会在统一个 promise 中多次调用
 
+- 2.2.6.1 当 promise 成功执行时，则所有各自的onFulfilled回调都必须按照对它们的原始调用的顺序执行。（即执行回调按其注册的顺序）
+
+- 2.2.6.2 当 promise 被拒绝执行时，所有各自的onRejected回调都必须按照对它们的原始调用的顺序执行。（即执行回调按其注册的顺序）
+
+2.2.7 then方法必须返回一个promise 对象 [注释 3.3]
+
+```javascript
+promise2 = promise1.then(onFulfilled, onRejected);
+```
+- 2.2.7.1 如果 onFulfilled 或者 onRejected 返回一个值 x ，则运行下面的 Promise 解决过程：[[Resolve]](promise2, x)
+
+- 2.2.7.2 如果onFulfilled或onRejected抛出异常e，则 promise2 必须拒绝执行，并返回拒觉原因e.
+
+- 2.2.7.3 如果onFulfilled不是函数并且已实现promise1，则必须以与promise1相同的值来实现promise2。
+
+- 2.2.7.4 如果onRejected不是函数，并且promise1被拒绝，则必须以与promise1相同的理由拒绝promise2。
+
+> 注：理解上面的“返回”部分非常重要，即：不论 promise1 被 reject 还是被 resolve 时 promise2 都会被 resolve，只有出现异常时才会被 rejected。
+
+##### 2.3 Promise 的分解过程
+
+Promise 分解过程是一个抽象的操作，其需输入一个 promise 和一个值，我们表示为 [[Resolve]](promise, x)，如果 x 有 then 方法且看上去像一个 Promise ，解决程序即尝试使 promise 接受 x 的状态；否则其用 x 的值来执行 promise 。
+
+这种 thenable 的特性使得 Promise 的实现更具有通用性：只要其暴露出一个遵循 Promise/A+ 协议的 then 方法即可；这同时也使遵循 Promise/A+ 规范的实现可以与那些不太规范但可用的实现能良好共存。
+
+要运行[[Resolve]]（promise，x），请执行以下步骤：
+
+2.3.1 如果promise和x指向同一个对象，请以 TypeError 作为promise的拒绝原因。
+
+2.3.2  如果x是一个promise，则采用其状态[注释 3.4]：
+
+- 2.3.2.1 如果x是pending状态，则promise必须一直pendding状态，直到x被实现或拒绝为止。
+
+- 2.3.2.2 如果 x 处于fulfilled状态，用相同的值执行 promise
+
+- 2.3.2.3 如果 x 处于rejected状态，用相同的据因拒绝 promise
+
+2.3.3 否则，如果x是对象或函数：
+
+- 2.3.3.1 使用then = x.then,进行赋值操作。原因是避免多次取值。 [注释 3.5]
+
+- 2.3.3.2 如果取 x.then 的值时抛出错误 e ，请拒绝promise，原因为e。
+
+- 2.3.3.3 如果then是一个函数，则用x作为this来调用它，第一个参数resolvePromise，第二个参数rejectPromise，其中：
+ * 2.3.3.3.1 如果使用值y调用resolvePromise时，运行[[Resolve]]（promise，y）。
+ 
+ * 2.3.3.3.2 如果使用原因r调用rejectPromise时，请使用r拒绝promise。
+
+ * 2.3.3.3.3 如果同时调用resolvePromise和rejectPromise，或者对同一参数进行了多次调用，则第一个调用具有优先权，而任何其他调用都将被忽略。
+
+ * 2.3.3.3.4 如果调用 then 抛出异常e：
+
+  + 2.3.3.3.4.1 如果已调用resolvePromise或rejectPromise，请忽略它。
+
+  + 2.3.3.3.4.2 否则，以e为理由拒绝promise。
+
+- 2.3.3.4 如果 then 不是函数，以 x 为参数执行 promise
+
+2.3.4 如果 x 不为对象或者函数，以 x 为参数执行 promise
+
+如果一个 promise 被一个循环的 thenable 链中的对象解决，而 [[Resolve]](promise, thenable) 的递归性质又使得其被再次调用，根据上述的算法将会陷入无限递归之中。算法虽不强制要求，但也鼓励施者检测这样的递归是否存在，若检测到存在则以一个可识别的 TypeError 为据因来拒绝 promise。[注释 3.6]
+
 #### 3. 注释
 
 -   3.1 这里的“平台代码”是指引擎，环境和承诺实现代码。 实际上，此要求可确保在调用事件循环之后，使用新堆栈异步执行 onFulfilled 和 onRejected。 可以使用“宏任务”机制（如 setTimeout 或 setImmediate）或“微任务”机制（如 MutationObserver 或 process.nextTick）来实现。 由于 promise 实现被视为平台代码，因此它本身可能包含一个任务调度队列或“蹦床”，在其中调用处理程序。
