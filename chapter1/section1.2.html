@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Section1.2 · Sample GitBook</title>
+        <title>Promise A+规范 · Sample GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -134,7 +134,7 @@
                 <a href="section1.2.html">
             
                     
-                    Section1.2
+                    Promise A+规范
             
                 </a>
             
@@ -267,7 +267,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Section1.2</a>
+        <a href=".." >Promise A+规范</a>
     </h1>
 </div>
 
@@ -282,7 +282,78 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="setion12">setion1.2</h3>
+                                <h3 id="promise-a-&#x89C4;&#x8303;-promisesa">Promise A+ &#x89C4;&#x8303; (Promises/A+)</h3>
+<h6 id="&#x4E00;&#x4E2A;&#x5F00;&#x653E;&#x3001;&#x5065;&#x5168;&#x4E14;&#x901A;&#x7528;&#x7684;-javascript-promise-&#x6807;&#x51C6;&#x3002;&#x7531;&#x5F00;&#x53D1;&#x8005;&#x5236;&#x5B9A;&#xFF0C;&#x4F9B;&#x5F00;&#x53D1;&#x8005;&#x53C2;&#x8003;&#x3002;">&#x4E00;&#x4E2A;&#x5F00;&#x653E;&#x3001;&#x5065;&#x5168;&#x4E14;&#x901A;&#x7528;&#x7684; JavaScript Promise &#x6807;&#x51C6;&#x3002;&#x7531;&#x5F00;&#x53D1;&#x8005;&#x5236;&#x5B9A;&#xFF0C;&#x4F9B;&#x5F00;&#x53D1;&#x8005;&#x53C2;&#x8003;&#x3002;</h6>
+<p>Promise &#x8868;&#x793A;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x7684;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#x3002;&#x4E0E;&#x4E4B;&#x4EA4;&#x4E92;&#x7684;&#x4E3B;&#x8981;&#x65B9;&#x6CD5;&#x662F; then &#x65B9;&#x6CD5;&#x3002;then &#x65B9;&#x6CD5;&#x6CE8;&#x518C;&#x4E86;&#x4E24;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;&#x7528;&#x4E8E;&#x63A5;&#x6536; promise &#x7684;&#x7EC8;&#x503C;&#x6216;&#x8005;&#x672C; promise &#x4E0D;&#x80FD;&#x6267;&#x884C;&#x7684;&#x539F;&#x56E0;&#x3002;</p>
+<p>&#x8BE5;&#x89C4;&#x8303;&#x8BE6;&#x7EC6;&#x8BF4;&#x660E;&#x4E86; then &#x65B9;&#x6CD5;&#x7684;&#x884C;&#x4E3A;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x53EF;&#x4E92;&#x64CD;&#x4F5C;&#x7684;&#x57FA;&#x7840;&#xFF0C;&#x6240;&#x6709; Promises / A +&#x7B26;&#x5408;&#x8BFA;&#x8A00;&#x7684;&#x5B9E;&#x73B0;&#x90FD;&#x53EF;&#x4EE5;&#x4F9D;&#x9760;&#x8BE5;&#x57FA;&#x7840;&#x6765;&#x63D0;&#x4F9B;&#x3002; &#x56E0;&#x6B64;&#xFF0C;&#x8BE5;&#x89C4;&#x8303;&#x5E94;&#x88AB;&#x89C6;&#x4E3A;&#x975E;&#x5E38;&#x7A33;&#x5B9A;&#x3002; &#x5C3D;&#x7BA1; Promises / A +&#x7EC4;&#x7EC7;&#x6709;&#x65F6;&#x4F1A;&#x901A;&#x8FC7;&#x5411;&#x540E;&#x517C;&#x5BB9;&#x7684;&#x5FAE;&#x5C0F;&#x66F4;&#x6539;&#x6765;&#x4FEE;&#x8BA2;&#x6B64;&#x89C4;&#x8303;&#xFF0C;&#x4EE5;&#x89E3;&#x51B3;&#x65B0;&#x53D1;&#x73B0;&#x7684;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x53EA;&#x6709;&#x7ECF;&#x8FC7;&#x4ED4;&#x7EC6;&#x8003;&#x8651;&#xFF0C;&#x8BA8;&#x8BBA;&#x548C;&#x6D4B;&#x8BD5;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x624D;&#x4F1A;&#x96C6;&#x6210;&#x5927;&#x578B;&#x6216;&#x5411;&#x540E;&#x4E0D;&#x517C;&#x5BB9;&#x7684;&#x66F4;&#x6539;&#x3002;</p>
+<p>&#x4ECE;&#x5386;&#x53F2;&#x4E0A;&#x770B;&#xFF0C;Promises / A +&#x9610;&#x660E;&#x4E86;&#x65E9;&#x671F; Promises / A &#x63D0;&#x6848;&#x7684;&#x884C;&#x4E3A;&#x6761;&#x6B3E;&#xFF0C;&#x4E00;&#x65B9;&#x9762;&#x5C06;&#x5176;&#x6269;&#x5C55;&#x4E3A;&#x6DB5;&#x76D6;&#x5B9E;&#x9645;&#x884C;&#x4E3A;&#xFF0C;&#x4E00;&#x65B9;&#x9762;&#x5220;&#x51CF;&#x4E86;&#x539F;&#x89C4;&#x8303;&#x7684;&#x4E00;&#x4E9B;&#x7279;&#x4F8B;&#x60C5;&#x51B5;&#x548C;&#x6709;&#x95EE;&#x9898;&#x7684;&#x90E8;&#x5206;&#x3002;</p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x6838;&#x5FC3;&#x7684; Promises/A+ &#x89C4;&#x8303;&#x4E0D;&#x8BBE;&#x8BA1;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x3001;&#x89E3;&#x51B3;&#x548C;&#x62D2;&#x7EDD; promise&#xFF0C;&#x800C;&#x662F;&#x4E13;&#x6CE8;&#x4E8E;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x7684; then &#x65B9;&#x6CD5;&#x3002;&#x4E0A;&#x8FF0;&#x5BF9;&#x4E8E; promises &#x7684;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#x5C06;&#x6765;&#x5728;&#x5176;&#x4ED6;&#x89C4;&#x8303;&#x4E2D;&#x53EF;&#x80FD;&#x4F1A;&#x63D0;&#x53CA;&#x3002;</p>
+<h4 id="1-&#x672F;&#x8BED;">1. &#x672F;&#x8BED;</h4>
+<ul>
+<li>1.1 &quot;promise&quot; &#x662F;&#x5177;&#x6709; then &#x65B9;&#x6CD5;&#x7684;&#x5BF9;&#x8C61;&#x6216;&#x51FD;&#x6570;&#xFF0C;&#x5176;&#x884C;&#x4E3A;&#x7B26;&#x5408;&#x6B64;&#x89C4;&#x8303;&#x3002;</li>
+<li>1.2 &quot;thenable&quot; &#x662F;&#x5B9A;&#x4E49; then &#x65B9;&#x6CD5;&#x7684;&#x5BF9;&#x8C61;&#x6216;&#x51FD;&#x6570;&#x3002;</li>
+<li>1.3 &quot;value&quot; &#x662F;&#x4EFB;&#x4F55;&#x5408;&#x6CD5;&#x7684; JavaScript &#x503C;&#xFF08;&#x5305;&#x62EC;&#x672A;&#x5B9A;&#x4E49;&#xFF0C;thenable &#x6216; promise&#xFF09;&#x3002;</li>
+<li>1.4 &quot;exception&quot; &#x662F;&#x4F7F;&#x7528; throw &#x8BED;&#x53E5;&#x629B;&#x51FA;&#x7684;&#x9519;&#x8BEF;&#x3002;</li>
+<li>1.5 &quot;reason&quot; &#x662F; promise &#x62D2;&#x7EDD;&#x7684;&#x539F;&#x56E0;&#x3002;</li>
+</ul>
+<h4 id="2-&#x8981;&#x6C42;">2. &#x8981;&#x6C42;</h4>
+<h5 id="21-promises-&#x7684;&#x72B6;&#x6001;">2.1 promises &#x7684;&#x72B6;&#x6001;</h5>
+<p>promise &#x5FC5;&#x987B;&#x5904;&#x4E8E;&#x4EE5;&#x4E0B;&#x4E09;&#x79CD;&#x72B6;&#x6001;&#x4E4B;&#x4E00;&#xFF1A;pending , fulfilled, rejected.</p>
+<p>2.1.1 pending &#x72B6;&#x6001;</p>
+<ul>
+<li>2.1.1.1 pending &#x72B6;&#x6001;&#x53EF;&#x80FD;&#x8F6C;&#x6362;&#x4E3A; fulfilled &#x72B6;&#x6001; &#x6216;&#x8005; rejected &#x72B6;&#x6001;&#x3002;</li>
+</ul>
+<p>2.1.2 fulfilled &#x72B6;&#x6001;</p>
+<ul>
+<li>2.1.2.1 fulfilled &#x72B6;&#x6001;&#x5373;&#x4E0D;&#x80FD;&#x53D8;&#x6210; pending &#x72B6;&#x6001;&#x4E5F;&#x4E0D;&#x80FD;&#x53D8;&#x6210; rejected &#x72B6;&#x6001;</li>
+<li>2.1.2.2 &#x5FC5;&#x987B;&#x6709;&#x4E00;&#x4E2A;&#x4E0D;&#x53EF;&#x6539;&#x53D8;&#x7684;&#x6700;&#x7EC8;&#x503C;</li>
+</ul>
+<p>2.1.3 rejected &#x72B6;&#x6001;</p>
+<ul>
+<li>2.1.3.1 rejected &#x72B6;&#x6001;&#x5373;&#x4E0D;&#x80FD;&#x53D8;&#x6210; pending &#x72B6;&#x6001;&#x4E5F;&#x4E0D;&#x80FD;&#x53D8;&#x6210; fulfilled &#x72B6;&#x6001;</li>
+<li>2.1.3.2 &#x5FC5;&#x987B;&#x6709;&#x4E00;&#x4E2A;&#x4E0D;&#x53EF;&#x6539;&#x53D8;&#x7684;&#x6700;&#x7EC8;&#x503C;(&#x62D2;&#x7EDD;&#x7684;&#x539F;&#x56E0;)</li>
+</ul>
+<blockquote>
+<p>&#x8FD9;&#x91CC;&#x7684;&#x4E0D;&#x53EF;&#x53D8;&#x6307;&#x7684;&#x662F;&#x6052;&#x7B49;&#xFF08;&#x5373;&#x53EF;&#x7528; === &#x5224;&#x65AD;&#x76F8;&#x7B49;&#xFF09;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x610F;&#x5473;&#x7740;&#x66F4;&#x6DF1;&#x5C42;&#x6B21;&#x7684;&#x4E0D;&#x53EF;&#x53D8;&#xFF08;&#x6307;&#x5F53; value &#x6216; reason &#x4E0D;&#x662F;&#x57FA;&#x672C;&#x503C;&#x65F6;&#xFF0C;&#x53EA;&#x8981;&#x6C42;&#x5176;&#x5F15;&#x7528;&#x5730;&#x5740;&#x76F8;&#x7B49;&#xFF0C;&#x4F46;&#x5C5E;&#x6027;&#x503C;&#x53EF;&#x88AB;&#x66F4;&#x6539;&#xFF09;&#x3002;</p>
+</blockquote>
+<h5 id="22-then-&#x65B9;&#x6CD5;">2.2 then &#x65B9;&#x6CD5;</h5>
+<p>promise &#x5FC5;&#x987B;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A; then &#x65B9;&#x6CD5;&#x6765;&#x8BBF;&#x95EE;&#x5176;&#x5F53;&#x524D;&#x6216;&#x8005;&#x6700;&#x7EC8;&#x503C;&#x6216;&#x8005;&#x62D2;&#x7EDD;&#x7684;&#x539F;&#x56E0;&#x3002;</p>
+<p>promise &#x7684; then &#x65B9;&#x6CD5;&#x63A5;&#x6536;&#x4E24;&#x4E2A;&#x53C2;&#x6570;</p>
+<pre><code class="lang-javascript">promise.then(onFulfilled, onRejected);
+</code></pre>
+<p>2.2.1 onFulfilled &#x548C; onRejected &#x90FD;&#x662F;&#x53EF;&#x9009;&#x53C2;&#x6570;&#xFF1A;</p>
+<ul>
+<li>2.2.1.1 &#x5982;&#x679C; onFulfilled &#x4E0D;&#x662F;&#x51FD;&#x6570;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x5C06;&#x5176;&#x5FFD;&#x7565;&#x3002;</li>
+<li>2.2.1.2 &#x5982;&#x679C; onRejected &#x4E0D;&#x662F;&#x51FD;&#x6570;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x5C06;&#x5176;&#x5FFD;&#x7565;&#x3002;</li>
+</ul>
+<p>2.2.2 &#x5982;&#x679C; onFulfilled &#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF1A;</p>
+<ul>
+<li>2.2.2.1 &#x5FC5;&#x987B;&#x5F53; promise &#x7684;&#x72B6;&#x6001;&#x4E3A; fulfilled &#x65F6;&#x624D;&#x8C03;&#x7528;&#x3002;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x65F6; promise &#x6267;&#x884C;&#x7684;&#x7EC8;&#x503C;&#x3002;</li>
+<li>2.2.2.2 &#x4E0D;&#x80FD;&#x5728; promise &#x7684;&#x72B6;&#x6001;&#x4E3A; fulfilled &#x4E4B;&#x524D;&#x8C03;&#x7528;</li>
+<li>2.2.2.3 &#x4E0D;&#x80FD;&#x591A;&#x6B21;&#x8C03;&#x7528;&#xFF0C;&#x53EA;&#x80FD;&#x8C03;&#x7528;&#x4E00;&#x6B21;</li>
+</ul>
+<p>2.2.3 &#x5982;&#x679C; onRejected &#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF1A;</p>
+<ul>
+<li>2.2.3.1 &#x5FC5;&#x987B;&#x5F53; promise &#x7684;&#x72B6;&#x6001;&#x4E3A; rejected &#x65F6;&#x624D;&#x8C03;&#x7528;&#x3002;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x65F6; promise &#x62D2;&#x7EDD;&#x7684;&#x539F;&#x56E0;&#x3002;</li>
+<li>2.2.3.2 &#x4E0D;&#x80FD;&#x5728; promise &#x7684;&#x72B6;&#x6001;&#x4E3A; rejected &#x4E4B;&#x524D;&#x8C03;&#x7528;</li>
+<li>2.2.3.3 &#x4E0D;&#x80FD;&#x591A;&#x6B21;&#x8C03;&#x7528;&#xFF0C;&#x53EA;&#x80FD;&#x8C03;&#x7528;&#x4E00;&#x6B21;</li>
+</ul>
+<p>2.2.4 &#x5728;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;&#x5806;&#x6808;&#x4EC5;&#x5305;&#x542B;&#x5E73;&#x53F0;&#x4EE3;&#x7801;&#x4E4B;&#x524D;&#xFF0C;&#x4E0D;&#x5F97;&#x8C03;&#x7528; onFulfilled &#x6216; onRejected&#x3002; [3.1]&#x3002;</p>
+<h4 id="3-&#x6CE8;&#x91CA;">3. &#x6CE8;&#x91CA;</h4>
+<ul>
+<li><p>3.1 &#x8FD9;&#x91CC;&#x7684;&#x201C;&#x5E73;&#x53F0;&#x4EE3;&#x7801;&#x201D;&#x662F;&#x6307;&#x5F15;&#x64CE;&#xFF0C;&#x73AF;&#x5883;&#x548C;&#x627F;&#x8BFA;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#x3002; &#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x6B64;&#x8981;&#x6C42;&#x53EF;&#x786E;&#x4FDD;&#x5728;&#x8C03;&#x7528;&#x4E8B;&#x4EF6;&#x5FAA;&#x73AF;&#x4E4B;&#x540E;&#xFF0C;&#x4F7F;&#x7528;&#x65B0;&#x5806;&#x6808;&#x5F02;&#x6B65;&#x6267;&#x884C; onFulfilled &#x548C; onRejected&#x3002; &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x201C;&#x5B8F;&#x4EFB;&#x52A1;&#x201D;&#x673A;&#x5236;&#xFF08;&#x5982; setTimeout &#x6216; setImmediate&#xFF09;&#x6216;&#x201C;&#x5FAE;&#x4EFB;&#x52A1;&#x201D;&#x673A;&#x5236;&#xFF08;&#x5982; MutationObserver &#x6216; process.nextTick&#xFF09;&#x6765;&#x5B9E;&#x73B0;&#x3002; &#x7531;&#x4E8E; promise &#x5B9E;&#x73B0;&#x88AB;&#x89C6;&#x4E3A;&#x5E73;&#x53F0;&#x4EE3;&#x7801;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x672C;&#x8EAB;&#x53EF;&#x80FD;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#x961F;&#x5217;&#x6216;&#x201C;&#x8E66;&#x5E8A;&#x201D;&#xFF0C;&#x5728;&#x5176;&#x4E2D;&#x8C03;&#x7528;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x3002;</p>
+</li>
+<li><p>3.2 &#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5728;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x5728;&#x5185;&#x90E8; this &#x7684;&#x503C;&#x662F; undefined &#x3002;&#x5728;&#x975E;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x5B83;&#x5C06;&#x662F;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li><p>3.3 &#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x5728;&#x6EE1;&#x8DB3;&#x6240;&#x6709;&#x8981;&#x6C42;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x53EF;&#x4EE5;&#x5141;&#x8BB8; promise2 === promise1 &#x3002;&#x6BCF;&#x4E2A;&#x5B9E;&#x73B0;&#x90FD;&#x8981;&#x6587;&#x6863;&#x8BF4;&#x660E;&#x5176;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x4EE5;&#x53CA;&#x5728;&#x4F55;&#x79CD;&#x6761;&#x4EF6;&#x4E0B;&#x5141;&#x8BB8; promise2 === promise1 &#x3002;</p>
+</li>
+<li><p>3.4 &#x901A;&#x5E38;&#x6765;&#x8BF4;&#xFF0C;&#x5982;&#x679C; x &#x7B26;&#x5408;&#x5F53;&#x524D;&#x5B9E;&#x73B0;&#xFF0C;&#x6211;&#x4EEC;&#x624D;&#x8BA4;&#x4E3A;&#x5B83;&#x662F;&#x771F;&#x6B63;&#x7684; promise &#x3002;&#x8FD9;&#x4E00;&#x89C4;&#x5219;&#x5141;&#x8BB8;&#x90A3;&#x4E9B;&#x7279;&#x4F8B;&#x5B9E;&#x73B0;&#x63A5;&#x53D7;&#x7B26;&#x5408;&#x5DF2;&#x77E5;&#x8981;&#x6C42;&#x7684; Promises &#x72B6;&#x6001;&#x3002;</p>
+</li>
+<li><p>3.5 &#x9996;&#x5148;&#x5B58;&#x50A8;&#x5BF9; x.then &#x7684;&#x5F15;&#x7528;&#xFF0C;&#x7136;&#x540E;&#x6D4B;&#x8BD5;&#x8BE5;&#x5F15;&#x7528;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x8BE5;&#x5F15;&#x7528;&#x7684;&#x8FC7;&#x7A0B;&#x907F;&#x514D;&#x4E86;&#x5BF9; x.then &#x5C5E;&#x6027;&#x7684;&#x591A;&#x6B21;&#x8BBF;&#x95EE;&#x3002; &#x6B64;&#x7C7B;&#x9884;&#x9632;&#x63AA;&#x65BD;&#x5BF9;&#x4E8E;&#x786E;&#x4FDD;&#x8BBF;&#x95EE;&#x8005;&#x5C5E;&#x6027;&#x7684;&#x4E00;&#x81F4;&#x6027;&#x975E;&#x5E38;&#x91CD;&#x8981;&#xFF0C;&#x56E0;&#x4E3A;&#x8BBF;&#x95EE;&#x8005;&#x5C5E;&#x6027;&#x7684;&#x503C;&#x5728;&#x4E24;&#x6B21;&#x68C0;&#x7D22;&#x4E4B;&#x95F4;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;</p>
+</li>
+<li><p>3.6 &#x5B9E;&#x73B0;&#x4E0D;&#x5E94;&#x8BE5;&#x5BF9; thenable &#x94FE;&#x7684;&#x6DF1;&#x5EA6;&#x8BBE;&#x9650;&#xFF0C;&#x5E76;&#x5047;&#x5B9A;&#x8D85;&#x51FA;&#x672C;&#x9650;&#x5236;&#x7684;&#x9012;&#x5F52;&#x5C31;&#x662F;&#x65E0;&#x9650;&#x5FAA;&#x73AF;&#x3002;&#x53EA;&#x6709;&#x771F;&#x6B63;&#x7684;&#x5FAA;&#x73AF;&#x9012;&#x5F52;&#x624D;&#x5E94;&#x80FD;&#x5BFC;&#x81F4; TypeError &#x5F02;&#x5E38;&#xFF1B;&#x5982;&#x679C;&#x4E00;&#x6761;&#x65E0;&#x9650;&#x957F;&#x7684;&#x94FE;&#x4E0A; thenable &#x5747;&#x4E0D;&#x76F8;&#x540C;&#xFF0C;&#x90A3;&#x4E48;&#x9012;&#x5F52;&#x4E0B;&#x53BB;&#x6C38;&#x8FDC;&#x662F;&#x6B63;&#x786E;&#x7684;&#x884C;&#x4E3A;&#x3002;</p>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -326,7 +397,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Section1.2","level":"1.2.2","depth":2,"next":{"title":"Node.js 笔记","level":"1.3","depth":1,"path":"chapter2/README.md","ref":"chapter2/README.md","articles":[{"title":"Section2.1","level":"1.3.1","depth":2,"path":"chapter2/section2.1.md","ref":"chapter2/section2.1.md","articles":[]},{"title":"Section2.2","level":"1.3.2","depth":2,"path":"chapter2/section2.2.md","ref":"chapter2/section2.2.md","articles":[]}]},"previous":{"title":"基本数据结构","level":"1.2.1","depth":2,"path":"chapter1/section1.1.md","ref":"chapter1/section1.1.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Tony Tang","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Sample GitBook","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"This is a sample book created by gitbook","extension":null},"file":{"path":"chapter1/section1.2.md","mtime":"2020-08-26T06:28:43.161Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-09-11T06:21:04.728Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Promise A+规范","level":"1.2.2","depth":2,"next":{"title":"Node.js 笔记","level":"1.3","depth":1,"path":"chapter2/README.md","ref":"chapter2/README.md","articles":[{"title":"Section2.1","level":"1.3.1","depth":2,"path":"chapter2/section2.1.md","ref":"chapter2/section2.1.md","articles":[]},{"title":"Section2.2","level":"1.3.2","depth":2,"path":"chapter2/section2.2.md","ref":"chapter2/section2.2.md","articles":[]}]},"previous":{"title":"基本数据结构","level":"1.2.1","depth":2,"path":"chapter1/section1.1.md","ref":"chapter1/section1.1.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Tony Tang","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Sample GitBook","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"This is a sample book created by gitbook","extension":null},"file":{"path":"chapter1/section1.2.md","mtime":"2020-09-11T10:31:40.558Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-09-11T10:32:42.407Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
