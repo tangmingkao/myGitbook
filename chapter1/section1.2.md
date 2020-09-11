@@ -67,7 +67,11 @@ promise.then(onFulfilled, onRejected);
 -   2.2.3.2 不能在 promise 的状态为 rejected 之前调用
 -   2.2.3.3 不能多次调用，只能调用一次
 
-2.2.4 在执行上下文堆栈仅包含平台代码之前，不得调用 onFulfilled 或 onRejected。 [3.1]。
+2.2.4 在执行上下文堆栈仅包含平台代码之前，不得调用 onFulfilled 或 onRejected。 [注释 3.1]。
+
+2.2.5 onFulfilled 和 onRejected 必须作为函数调用（即没有此值）。 [注释 3.2]
+
+2.2.6 then 可能会在统一个 promise 中多次调用
 
 #### 3. 注释
 
