@@ -4,7 +4,7 @@
 
 Promise 表示异步操作的最终结果。与之交互的主要方法是 then 方法。then 方法注册了两个回调函数，用于接收 promise 的终值或者本 promise 不能执行的原因。
 
-该规范详细说明了 then 方法的行为，提供了一个可互操作的基础，所有 Promises / A +符合诺言的实现都可以依靠该基础来提供。 因此，该规范应被视为非常稳定。 尽管 Promises / A +组织有时会通过向后兼容的微小更改来修订此规范，以解决新发现的极端情况，但只有经过仔细考虑，讨论和测试之后，我们才会集成大型或向后不兼容的更改。
+该规范详细说明了 then 方法的行为，提供了一个可互操作的基础，所有 Promises / A +规范的promise实现都可以依靠该基础来提供。 因此，该规范应被视为非常稳定。 尽管 Promises / A +组织有时会通过向后兼容的微小更改来修订此规范，以解决新发现的极端情况，但只有经过仔细考虑，讨论和测试之后，我们才会集成大型或向后不兼容的更改。
 
 从历史上看，Promises / A +阐明了早期 Promises / A 提案的行为条款，一方面将其扩展为涵盖实际行为，一方面删减了原规范的一些特例情况和有问题的部分。
 
@@ -57,19 +57,19 @@ promise.then(onFulfilled, onRejected);
 
 2.2.2 如果 onFulfilled 是一个函数：
 
--   2.2.2.1 必须当 promise 的状态为 fulfilled 时才调用。第一个参数时 promise 执行的终值。
+-   2.2.2.1 必须当 promise 的状态为 fulfilled 时才调用。第一个参数是 promise 执行的终值。
 -   2.2.2.2 不能在 promise 的状态为 fulfilled 之前调用
 -   2.2.2.3 不能多次调用，只能调用一次
 
 2.2.3 如果 onRejected 是一个函数：
 
--   2.2.3.1 必须当 promise 的状态为 rejected 时才调用。第一个参数时 promise 拒绝的原因。
+-   2.2.3.1 必须当 promise 的状态为 rejected 时才调用。第一个参数是 promise 拒绝的原因。
 -   2.2.3.2 不能在 promise 的状态为 rejected 之前调用
 -   2.2.3.3 不能多次调用，只能调用一次
 
 2.2.4 在执行上下文堆栈仅包含平台代码之前，不得调用 onFulfilled 或 onRejected。 [注释 3.1]。
 
-2.2.5 onFulfilled 和 onRejected 必须作为函数调用（即没有此值）。 [注释 3.2]
+2.2.5 onFulfilled 和 onRejected 必须作为函数调用（即没有this值）。 [注释 3.2]
 
 2.2.6 then 可能会在统一个 promise 中多次调用
 
