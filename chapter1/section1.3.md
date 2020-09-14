@@ -1,6 +1,7 @@
-#### Promise 的实现
+#### Promise 的简单初步实现
 
 ```javasctipt
+
 //promise 的链式调用
 // 1. 如果then方法中（成功或者失败）如果返回的不是一个promise。会将这个结果值传递给外层下一次的then的成功结果中
 // 2. 如果执行then方法中的方法出错啦，抛出异常 走到下一个的失败中
@@ -21,7 +22,7 @@ const STATUS = {
 
 // 1. 如果x是promise，则要采用他的状态
 // 2. 如果x是普通值，则直接resolve(x)
-function resolvePromise(x, promise2, resolve, reject) {
+function resolvePromise (x, promise2, resolve, reject) {
     //如果是相同的则抛出一个类型错误
     if (promise2 == x) {
         reject(new TypeError('something wrong'));
@@ -55,12 +56,10 @@ function resolvePromise(x, promise2, resolve, reject) {
 }
 
 //判断是否是promise
-function isPromise(val) {
+function isPromise (val) {
     return typeof val.then == 'function';
 }
-function processData() {
-    
-}
+
 // promise 的executor 默认执行
 class Promise {
     constructor(executor) {
@@ -108,7 +107,7 @@ class Promise {
     //then能链式调用的的原因： 每次调用then方法都返回一个新的promise
 
     //判断返回值和promise2的关系。
-    then(onFulfilled, onRejected) {
+    then (onFulfilled, onRejected) {
         // 可选参数 处理参数
         onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : x => x
         onRejected = typeof onRejected === 'function' ? onRejected : err => {
@@ -165,40 +164,69 @@ class Promise {
         return this.then(undefined, onRejected);
     }
     //默认只有成功没有失败
-    static resolve(val) {
+    static resolve (val) {
         return new Promise((resolve, reject) => {
             resolve(val);
         });
     }
     //失败的promise
-    static reject(reason) {
+    static reject (reason) {
         return new Promise((resolve, reject) => {
             reject(reason);
         });
     }
-    //all 方法
-    static all(promises) {
+    //all 方法 一个失败就全失败了
+    static all (promises) {
         return new Promise((resolve, reject) => {
             let result = [];
+            let times = 0;
+            function processData (index, val) {
+                result[index] = val;
+                if (++times === promises.length) {
+                    resolve(result);
+                }
+            }
             for (let i = 0; i < promises.length; i++) {
                 let p = promises[i];
                 if (isPromise(p)) {
                     p.then(data => {
-                        //如果是普通值
+                        //普通值
                         processData(i, data);
                     })
                 } else {
-                    //
+                    //普通值
                     processData(i, p);
                 }
             }
         });
     }
-    //race 方法
-    static race() {
-
+    //race 方法  race (赛跑 采用跑的快的作为结果)
+    static race (promises) {
+        let len = promises && promises.length || 0;
+        return new Promise((resolve,reject) => {
+            for(let i=0;i< len;i++) {
+                let currentVal = promises[i];
+                if(currentVal && typeof currentVal.then == 'function') {
+                    currentVal.then(resolve,reject);
+                } else {
+                    resolve(currentVal);
+                }
+            }
+        });
     }
+}
+//finally 方法
+Promise.prototype.finally = function(callback){
+    return this.then(data => {
+        // 让函数执行 内部会调用方法，如果方法是promise需要等待他完成
+        return Promise.resolve(callback()).then(() => data);
+    },err => {
+        return Promise.resolve(callback()).then(() => {
+            throw err;
+        });
+    })
 }
 
 module.exports = Promise;
+
 ```
