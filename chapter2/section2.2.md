@@ -238,3 +238,57 @@ console.log(Buffer.isEncoding(""));
 索引操作符 \[index\] 可用于获取或设置 buf 中指定的 index 位置的八位字节。 该值指向单个字节，所以有效的值的范围是 0x00 至 0xFF（十六进制）、或 0 至 255（十进制）。
 
 该操作符继承自 Uint8Array，所以对越界访问的行为与 Uint8Array 相同。 也就是说，当 index 为负数或大于或等于 buf.length 时，则 buf\[index\] 返回 undefined，而如果 index 为负数或 >= buf.length 时，则 buf\[index\] = value 不会修改该 buffer。
+
+#### buf.buffer
+
+-   \<ArrayBuffer\> 创建此 Buffer 对象时基于的底层 ArrayBuffer 对象。
+
+不能保证此 ArrayBuffer 与原始的 Buffer 完全对应。 有关详细信息，参见 buf.byteOffset 上的说明。
+
+#### buf.byteOffset
+
+-   \<integer\> Buffer 底层的 ArrayBuffer 对象的 byteOffset。
+
+当 Buffer.from(ArrayBuffer, byteOffset, length) 设置了 byteOffset 或创建一个小于 Buffer.poolSize 的 Buffer 时，底层的 ArrayBuffer 的偏移量并不是从 0 开始。当直接使用 buf.buffer 访问底层的 ArrayBuffer 时可能会导致问题，因为 ArrayBuffer 的其他部分可能并不指向 Buffer 对象。当创建与 Buffer 共享其内存的 TypedArray 对象时，需要正确地指定 byteOffset。
+
+#### buf.compare(target,targetStart,targetEnd,sourceStart,sourceEnd)
+
+-   target: Buffer | Uint8Array 要与 buf 对比的 Buffer 或 Uint8Array。
+
+-   targetStart: integer target 中开始对比的偏移量。默认值: 0。
+
+-   targetEnd: integer target 中结束对比的偏移量（不包含）。默认值: target.length。
+
+-   sourceStart: integer buf 中开始对比的偏移量。默认值: 0。
+
+-   sourceEnd: integer buf 中结束对比的偏移量（不包含）。默认值: buf.length。
+
+-   返回: integer
+
+对比 buf 与 target，并返回一个数值，表明 buf 在排序上是否排在 target 前面、或后面、或相同。 对比是基于各自 Buffer 实际的字节序列。
+
+1. 如果 target 与 buf 相同，则返回 0。
+
+2. 如果 target 排在 buf 前面，则返回 1。
+
+3. 如果 target 排在 buf 后面，则返回 -1。
+
+targetStart、 targetEnd、 sourceStart 与 sourceEnd 可用于指定 target 与 buf 中对比的范围。
+
+如果 targetStart < 0、 sourceStart < 0、 targetEnd > target.byteLength 或 sourceEnd > source.byteLength，则抛出 ERR_OUT_OF_RANGE。
+
+#### buf.copy(target,targetStart,sourceStart,sourceEnd)
+
+-   target: Buffer | Uint8Array 要拷贝进的 Buffer 或 Uint8Array。
+
+-   targetStart: integer target 中开始写入之前要跳过的字节数。默认值: 0。
+
+-   sourceStart: integer buf 中开始拷贝的偏移量。默认值: 0。
+
+-   sourceEnd: integer buf 中结束拷贝的偏移量（不包含）。默认值: buf.length。
+
+-   返回: integer 拷贝的字节数。
+
+拷贝 buf 中某个区域的数据到 target 中的某个区域，即使 target 的内存区域与 buf 的重叠。
+
+TypedArray#set() 执行相同的操作，并且可用于所有的 TypedArray，包括 Node.js 的 Buffer，尽管它采用不同的函数参数。
