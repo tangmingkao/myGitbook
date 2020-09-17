@@ -83,3 +83,84 @@ console.log(buf);
 Buffer 模块会预分配一个内部的大小为 Buffer.poolSize 的 Buffer 实例，作为快速分配的内存池，用于使用 Buffer.allocUnsafe() 创建新的 Buffer 实例、或 Buffer.from(array)、或弃用的 new Buffer(size) 构造器但仅当 size 小于或等于 Buffer.poolSize >> 1（Buffer.poolSize 除以二再向下取整）。
 
 对这个预分配的内部内存池的使用是调用 Buffer.alloc(size, fill) 和 Buffer.allocUnsafe(size).fill(fill) 两者之间的关键区别。 具体来说， Buffer.alloc(size, fill) 永远不会使用内部的 Buffer 池，而 Buffer.allocUnsafe(size).fill(fill) 在 size 小于或等于 Buffer.poolSize 的一半时将会使用内部的 Buffer 池。 该差异虽然很微妙，但当应用程序需要 Buffer.allocUnsafe() 提供的额外性能时，则非常重要。
+
+##### Buffer.allocUnsafeSlow(size)
+
+-   size <integer> 新建的 Buffer 的长度。
+
+创建一个大小为 size 字节的新 Buffer。 如果 size 大于 buffer.constants.MAX_LENGTH 或小于 0，则抛出 ERR_INVALID_OPT_VALUE。 如果 size 为 0，则创建一个长度为零的 Buffer。
+
+以这种方式创建的 Buffer 实例的底层内存是未初始化的。 Buffer 的内容是未知的，可能包含敏感数据。 使用 buf.fill(0) 可以以零初始化 Buffer 实例。
+
+当使用 Buffer.allocUnsafe() 创建新的 Buffer 实例时，如果要分配的内存小于 4KB，则会从一个预分配的 Buffer 切割出来。 这可以避免垃圾回收机制因创建太多独立的 Buffer 而过度使用。 通过消除跟踪和清理尽可能多的单个 ArrayBuffer 对象的需要，该方法可以提高性能和内存使用率。
+
+当开发人员需要在内存池中保留一小块内存时，可以使用 Buffer.allocUnsafeSlow() 创建一个非内存池的 Buffer 实例并拷贝相关的比特位出来。
+
+如果 size 不是一个数字，则抛出 TypeError。
+
+##### Buffer.byteLength(string,encoding)
+
+-   string <string> | <Buffer> | <TypedArray> | <DataView> | <ArrayBuffer> | <SharedArrayBuffer> 要计算长度的值。
+
+-   encoding <string> 如果 string 是字符串，则这是它的字符编码。默认值: 'utf8'。
+
+-   返回: <integer> string 中包含的字节数。
+
+当使用 encoding 进行编码时，返回字符串的字节长度。 与 String.prototype.length 不同，后者不会考虑用于将字符串转换为字节的编码。
+
+对于 'base64' 和 'hex'，此函数会假定输入是有效的。 对于包含非 base64/hex 编码的数据（例如空格）的字符串，返回值可能是大于从字符串创建的 Buffer 的长度。
+
+> 当 string 是一个 Buffer/DataView/TypedArray/ArrayBuffer/SharedArrayBuffer 时，返回 .byteLength 报告的字节长度
+
+##### Buffer.compare(buf1, buf2)
+
+-   buf1 <Buffer> | <Uint8Array>
+
+-   buf2 <Buffer> | <Uint8Array>
+
+-   返回: <integer> -1、 0 或 1，取决于比较的结果。比较 buf1 与 buf2，主要用于 Buffer 实例数组的排序。 相当于调用 buf1.compare(buf2)。
+
+```javascript
+const buf1 = Buffer.from("1234");
+const buf2 = Buffer.from("0123");
+const arr = [buf1, buf2];
+console.log(arr.sort(Buffer.compare));
+// 打印: [ <Buffer 30 31 32 33>, <Buffer 31 32 33 34> ]
+// (结果相当于: [buf2, buf1])
+```
+
+##### Buffer.concat(list,totalLength)
+
+-   list <Buffer[]> | <Uint8Array[]> 要合并的 Buffer 数组或 Uint8Array 数组。
+
+-   totalLength <integer> 合并后 list 中的 Buffer 实例的总长度。
+
+-   返回: <Buffer>
+
+返回一个合并了 list 中所有 Buffer 实例的新 Buffer。
+
+如果 list 中没有元素、或 totalLength 为 0，则返回一个长度为 0 的 Buffer。
+
+如果没有提供 totalLength，则通过将 list 中的 Buffer 实例的长度相加来计算得出。
+
+如果提供了 totalLength，则会强制转换为无符号整数。 如果 list 中的 Buffer 合并后的总长度大于 totalLength，则结果会被截断到 totalLength 的长度。
+
+##### Buffer.from(array)
+
+-   array <integer[]>
+
+使用 0 – 255 范围内的字节数组 array 来分配一个新的 Buffer。 超出该范围的数组条目会被截断以适合它。
+
+##### Buffer.from(arrayBuffer,byteOffset,length)
+
+-   arrayBuffer <ArrayBuffer> | <SharedArrayBuffer> 一个 ArrayBuffer 或 SharedArrayBuffer，例如 TypedArray 的 .buffer 属性。
+
+-   byteOffset <integer> 开始拷贝的索引。默认值: 0。
+
+-   length <integer> 拷贝的字节数。默认值: arrayBuffer.byteLength - byteOffset。
+
+创建 ArrayBuffer 的视图，但不会拷贝底层内存。 例如，当传入 TypedArray 的 .buffer 属性的引用时，新建的 Buffer 会与 TypedArray 共享同一内存。
+
+可选的 byteOffset 和 length 参数指定 arrayBuffer 中与 Buffer 共享的内存范围。
+
+如果 arrayBuffer 不是一个 ArrayBuffer、SharedArrayBuffer 或适用于 Buffer.from() 变量的其他类型，则抛出 TypeError。
