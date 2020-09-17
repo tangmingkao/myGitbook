@@ -193,7 +193,19 @@ console.log(arr.sort(Buffer.compare));
 
 如果 obj 是一个 Buffer，则返回 true，否则返回 false。
 
----
+```javascript
+console.log(Buffer.isEncoding("utf-8"));
+// 打印: true
+
+console.log(Buffer.isEncoding("hex"));
+// 打印: true
+
+console.log(Buffer.isEncoding("utf/8"));
+// 打印: false
+
+console.log(Buffer.isEncoding(""));
+// 打印: false
+```
 
 #### Buffer.isEncoding(encoding)
 
