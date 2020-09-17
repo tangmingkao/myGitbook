@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Section2.2 · Sample GitBook</title>
+        <title>Buffer · Sample GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -192,7 +192,7 @@
                 <a href="section2.2.html">
             
                     
-                    Section2.2
+                    Buffer
             
                 </a>
             
@@ -280,7 +280,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Section2.2</a>
+        <a href=".." >Buffer</a>
     </h1>
 </div>
 
@@ -295,7 +295,309 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="setion-22">setion 2.2</h3>
+                                <h3 id="buffer-&#x7F13;&#x51B2;&#x5668;">Buffer &#x7F13;&#x51B2;&#x5668;</h3>
+<h6 id="&#x6E90;&#x4EE3;&#x7801;-libbufferjs">&#x6E90;&#x4EE3;&#x7801;: lib/buffer.js</h6>
+<p>Buffer &#x5BF9;&#x8C61;&#x7528;&#x4E8E;&#x8868;&#x793A;&#x56FA;&#x5B9A;&#x957F;&#x5EA6;&#x7684;&#x5B57;&#x8282;&#x5E8F;&#x5217;&#x3002; &#x8BB8;&#x591A; Node.js API &#x90FD;&#x652F;&#x6301; Buffer&#x3002;</p>
+<p>Buffer &#x7C7B;&#x662F; JavaScript &#x7684; Uint8Array &#x7C7B;&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x4E14;&#x7EE7;&#x627F;&#x65F6;&#x5E26;&#x4E0A;&#x4E86;&#x6DB5;&#x76D6;&#x989D;&#x5916;&#x7528;&#x4F8B;&#x7684;&#x65B9;&#x6CD5;&#x3002; &#x53EA;&#x8981;&#x652F;&#x6301; Buffer &#x7684;&#x5730;&#x65B9;&#xFF0C;Node.js API &#x90FD;&#x53EF;&#x4EE5;&#x63A5;&#x53D7;&#x666E;&#x901A;&#x7684; Uint8Array&#x3002;</p>
+<p>Buffer &#x7C7B;&#x5728;&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;&#x4E2D;&#xFF0C;&#x56E0;&#x6B64;&#x65E0;&#x9700;&#x4F7F;&#x7528; require(&apos;buffer&apos;).Buffer&#x3002;</p>
+<p>&#x5F53;&#x5728; Buffer &#x548C;&#x5B57;&#x7B26;&#x4E32;&#x4E4B;&#x95F4;&#x8F6C;&#x6362;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002; &#x5982;&#x679C;&#x672A;&#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#xFF0C;&#x5219;&#x4F7F;&#x7528; UTF-8 &#x4F5C;&#x4E3A;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</p>
+<h5 id="nodejs-&#x652F;&#x6301;&#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x5982;&#x4E0B;&#xFF1A;">Node.js &#x652F;&#x6301;&#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</h5>
+<ul>
+<li><p>&apos;utf8&apos;: &#x591A;&#x5B57;&#x8282;&#x7F16;&#x7801;&#x7684; Unicode &#x5B57;&#x7B26;&#x3002; &#x8BB8;&#x591A;&#x7F51;&#x9875;&#x548C;&#x5176;&#x4ED6;&#x6587;&#x6863;&#x683C;&#x5F0F;&#x90FD;&#x4F7F;&#x7528; UTF-8&#x3002; &#x8FD9;&#x662F;&#x9ED8;&#x8BA4;&#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002; &#x5F53;&#x5C06; Buffer &#x89E3;&#x7801;&#x4E3A;&#x4E0D;&#x4E13;&#x95E8;&#x5305;&#x542B;&#x6709;&#x6548; UTF-8 &#x6570;&#x636E;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x65F6;&#xFF0C;&#x5219;&#x4F1A;&#x4F7F;&#x7528; Unicode &#x66FF;&#x6362;&#x5B57;&#x7B26; U+FFFD &#xFFFD; &#x6765;&#x8868;&#x793A;&#x8FD9;&#x4E9B;&#x9519;&#x8BEF;&#x3002;</p>
+</li>
+<li><p>&apos;utf16le&apos;: &#x591A;&#x5B57;&#x8282;&#x7F16;&#x7801;&#x7684; Unicode &#x5B57;&#x7B26;&#x3002; &#x4E0E; &apos;utf8&apos; &#x4E0D;&#x540C;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5B57;&#x7B26;&#x90FD;&#x4F1A;&#x4F7F;&#x7528; 2 &#x4E2A;&#x6216; 4 &#x4E2A;&#x5B57;&#x8282;&#x8FDB;&#x884C;&#x7F16;&#x7801;&#x3002; Node.js &#x4EC5;&#x652F;&#x6301; UTF-16 &#x7684;&#x5C0F;&#x7AEF;&#x5E8F;&#x53D8;&#x4F53;&#x3002;</p>
+</li>
+<li><p>&apos;latin1&apos;: Latin-1 &#x4EE3;&#x8868; ISO-8859-1&#x3002; &#x6B64;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x4EC5;&#x652F;&#x6301;&#x4ECE; U+0000 &#x5230; U+00FF &#x7684; Unicode &#x5B57;&#x7B26;&#x3002; &#x6BCF;&#x4E2A;&#x5B57;&#x7B26;&#x4F7F;&#x7528;&#x5355;&#x4E2A;&#x5B57;&#x8282;&#x8FDB;&#x884C;&#x7F16;&#x7801;&#x3002; &#x8D85;&#x51FA;&#x8BE5;&#x8303;&#x56F4;&#x7684;&#x5B57;&#x7B26;&#x4F1A;&#x88AB;&#x622A;&#x65AD;&#xFF0C;&#x5E76;&#x6620;&#x5C04;&#x6210;&#x8BE5;&#x8303;&#x56F4;&#x5185;&#x7684;&#x5B57;&#x7B26;&#x3002;</p>
+</li>
+</ul>
+<p>&#x4F7F;&#x7528;&#x4EE5;&#x4E0A;&#x65B9;&#x6CD5;&#x4E4B;&#x4E00;&#x5C06; Buffer &#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x79F0;&#x4E3A;&#x89E3;&#x7801;&#xFF1B;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x4E3A; Buffer&#xFF0C;&#x79F0;&#x4E3A;&#x7F16;&#x7801;&#x3002;</p>
+<p>Node.js &#x8FD8;&#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x4E8C;&#x8FDB;&#x5236;&#x8F6C;&#x6587;&#x672C;&#x7684;&#x7F16;&#x7801;&#x3002; &#x5BF9;&#x4E8E;&#x4E8C;&#x8FDB;&#x5236;&#x8F6C;&#x6587;&#x672C;&#x7684;&#x7F16;&#x7801;&#xFF0C;&#x5176;&#x547D;&#x540D;&#x7EA6;&#x5B9A;&#x662F;&#x76F8;&#x53CD;&#x7684;&#xFF1A;&#x5C06; Buffer &#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x901A;&#x5E38;&#x79F0;&#x4E3A;&#x7F16;&#x7801;&#xFF0C;&#x800C;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x4E3A; Buffer &#x5219;&#x79F0;&#x4E3A;&#x89E3;&#x7801;&#x3002;</p>
+<ul>
+<li><p>&apos;base64&apos;: Base64 &#x7F16;&#x7801;&#x3002; &#x5F53;&#x4ECE;&#x5B57;&#x7B26;&#x4E32;&#x521B;&#x5EFA; Buffer &#x65F6;&#xFF0C;&#x6B64;&#x7F16;&#x7801;&#x4E5F;&#x4F1A;&#x6B63;&#x786E;&#x5730;&#x63A5;&#x53D7; RFC 4648 &#x7B2C; 5 &#x8282;&#x4E2D;&#x6307;&#x5B9A;&#x7684; &#x201C;URL &#x548C;&#x6587;&#x4EF6;&#x540D;&#x5B89;&#x5168;&#x5B57;&#x6BCD;&#x201D;&#x3002; base64 &#x7F16;&#x7801;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x5305;&#x542B;&#x7684;&#x7A7A;&#x683C;&#x5B57;&#x7B26;&#xFF08;&#x4F8B;&#x5982;&#x7A7A;&#x683C;&#x3001;&#x5236;&#x8868;&#x7B26;&#x548C;&#x6362;&#x884C;&#xFF09;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#x3002;</p>
+</li>
+<li><p>&apos;hex&apos;: &#x5C06;&#x6BCF;&#x4E2A;&#x5B57;&#x8282;&#x7F16;&#x7801;&#x6210;&#x4E24;&#x4E2A;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x7684;&#x5B57;&#x7B26;&#x3002; &#x5F53;&#x89E3;&#x7801;&#x4EC5;&#x5305;&#x542B;&#x6709;&#x6548;&#x7684;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x5B57;&#x7B26;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x65F6;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x751F;&#x6570;&#x636E;&#x622A;&#x65AD;&#x3002; &#x8BF7;&#x53C2;&#x89C1;&#x4E0B;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x3002;</p>
+</li>
+</ul>
+<p>&#x8FD8;&#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x4F20;&#x7EDF;&#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#xFF1A;</p>
+<ul>
+<li><p>&apos;ascii&apos;: &#x4EC5;&#x9002;&#x7528;&#x4E8E; 7 &#x4F4D; ASCII &#x6570;&#x636E;&#x3002; &#x5F53;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x7F16;&#x7801;&#x4E3A; Buffer &#x65F6;&#xFF0C;&#x8FD9;&#x7B49;&#x6548;&#x4E8E;&#x4F7F;&#x7528; &apos;latin1&apos;&#x3002; &#x5F53;&#x5C06; Buffer &#x89E3;&#x7801;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x65F6;&#xFF0C;&#x5219;&#x4F7F;&#x7528;&#x6B64;&#x7F16;&#x7801;&#x4F1A;&#x5728;&#x89E3;&#x7801;&#x4E3A; &apos;latin1&apos; &#x4E4B;&#x524D;&#x989D;&#x5916;&#x53D6;&#x6D88;&#x8BBE;&#x7F6E;&#x6BCF;&#x4E2A;&#x5B57;&#x8282;&#x7684;&#x6700;&#x9AD8;&#x4F4D;&#x3002; &#x901A;&#x5E38;&#xFF0C;&#x5F53;&#x5728;&#x7F16;&#x7801;&#x6216;&#x89E3;&#x7801;&#x7EAF; ASCII &#x6587;&#x672C;&#x65F6;&#xFF0C;&#x5E94;&#x8BE5;&#x6CA1;&#x6709;&#x7406;&#x7531;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x7F16;&#x7801;&#xFF0C;&#x56E0;&#x4E3A; &apos;utf8&apos;&#xFF08;&#x6216;&#x8005;&#xFF0C;&#x5982;&#x679C;&#x5DF2;&#x77E5;&#x7684;&#x6570;&#x636E;&#x59CB;&#x7EC8;&#x4E3A;&#x7EAF; ASCII&#xFF0C;&#x5219;&#x4E3A; &apos;latin1&apos;&#xFF09;&#x4F1A;&#x662F;&#x66F4;&#x597D;&#x7684;&#x9009;&#x62E9;&#x3002; &#x8FD9;&#x4EC5;&#x4E3A;&#x4F20;&#x7EDF;&#x7684;&#x517C;&#x5BB9;&#x6027;&#x800C;&#x63D0;&#x4F9B;&#x3002;</p>
+</li>
+<li><p>&apos;binary&apos;: &apos;latin1&apos; &#x7684;&#x522B;&#x540D;&#x3002; &#x8BE5;&#x7F16;&#x7801;&#x7684;&#x540D;&#x79F0;&#x53EF;&#x80FD;&#x4F1A;&#x5F15;&#x8D77;&#x8BEF;&#x89E3;&#xFF0C;&#x56E0;&#x4E3A;&#x6B64;&#x5904;&#x5217;&#x51FA;&#x7684;&#x6240;&#x6709;&#x7F16;&#x7801;&#x90FD;&#x662F;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x4E4B;&#x95F4;&#x8F6C;&#x6362;&#x3002; &#x5BF9;&#x4E8E;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x548C; Buffer &#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x8F6C;&#x6362;&#xFF0C;&#x901A;&#x5E38; &apos;utf-8&apos; &#x662F;&#x6B63;&#x786E;&#x7684;&#x9009;&#x62E9;&#x3002;</p>
+</li>
+<li><p>&apos;ucs2&apos;: &apos;utf16le&apos; &#x7684;&#x522B;&#x540D;&#x3002; UCS-2 &#x4EE5;&#x524D;&#x662F;&#x6307; UTF-16 &#x7684;&#x4E00;&#x79CD;&#x53D8;&#x4F53;&#xFF0C;&#x8BE5;&#x53D8;&#x4F53;&#x4E0D;&#x652F;&#x6301;&#x4EE3;&#x7801;&#x70B9;&#x5927;&#x4E8E; U+FFFF &#x7684;&#x5B57;&#x7B26;&#x3002; &#x5728; Node.js &#x4E2D;&#xFF0C;&#x59CB;&#x7EC8;&#x652F;&#x6301;&#x8FD9;&#x4E9B;&#x4EE3;&#x7801;&#x70B9;&#x3002;</p>
+</li>
+</ul>
+<h4 id="buffer-&#x7C7B;">Buffer &#x7C7B;</h4>
+<blockquote>
+<p>Buffer &#x7C7B;&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF0C;&#x7528;&#x4E8E;&#x76F4;&#x63A5;&#x5904;&#x7406;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x3002; &#x5B83;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x591A;&#x79CD;&#x65B9;&#x5F0F;&#x6784;&#x5EFA;&#x3002;</p>
+</blockquote>
+<h4 id="bufferallocsizefillencoding">Buffer.alloc(size,fill,encoding)</h4>
+<ul>
+<li><p>size: integer &#x65B0; Buffer &#x7684;&#x6240;&#x9700;&#x957F;&#x5EA6;&#x3002;</p>
+</li>
+<li><p>fill: string | Buffer | Uint8Array | integer &#x7528;&#x4E8E;&#x9884;&#x586B;&#x5145;&#x65B0; Buffer &#x7684;&#x503C;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: 0&#x3002;</p>
+</li>
+<li><p>encoding: string &#x5982;&#x679C; fill &#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5219;&#x8FD9;&#x662F;&#x5B83;&#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: &apos;utf8&apos;&#x3002;</p>
+</li>
+</ul>
+<p>&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x5927;&#x5C0F;&#x4E3A; size &#x5B57;&#x8282;&#x7684;&#x65B0; Buffer&#x3002; &#x5982;&#x679C; fill &#x4E3A; undefined&#xFF0C;&#x5219;&#x7528;&#x96F6;&#x586B;&#x5145; Buffer&#x3002;</p>
+<p>&#x5982;&#x679C; size &#x5927;&#x4E8E; buffer.constants.MAX_LENGTH &#x6216;&#x5C0F;&#x4E8E; 0&#xFF0C;&#x5219;&#x629B;&#x51FA; ERR_INVALID_OPT_VALUE&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6307;&#x5B9A;&#x4E86; fill&#xFF0C;&#x5219;&#x5206;&#x914D;&#x7684; Buffer &#x901A;&#x8FC7;&#x8C03;&#x7528; buf.fill(fill) &#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x540C;&#x65F6;&#x6307;&#x5B9A;&#x4E86; fill &#x548C; encoding&#xFF0C;&#x5219;&#x5206;&#x914D;&#x7684; Buffer &#x901A;&#x8FC7;&#x8C03;&#x7528; buf.fill(fill, encoding) &#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316; &#x3002;</p>
+<p>&#x5982;&#x679C; size &#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5219;&#x629B;&#x51FA; TypeError&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> buf = Buffer.alloc(<span class="hljs-number">5</span>);
+<span class="hljs-built_in">console</span>.log(buf);
+<span class="hljs-comment">// &#x6253;&#x5370;: &lt;Buffer 00 00 00 00 00&gt;</span>
+
+<span class="hljs-keyword">const</span> buf = Buffer.alloc(<span class="hljs-number">5</span>, <span class="hljs-string">&quot;a&quot;</span>);
+<span class="hljs-built_in">console</span>.log(buf);
+<span class="hljs-comment">// &#x6253;&#x5370;: &lt;Buffer 61 61 61 61 61&gt;</span>
+
+<span class="hljs-keyword">const</span> buf = Buffer.alloc(<span class="hljs-number">11</span>, <span class="hljs-string">&quot;aGVsbG8gd29ybGQ=&quot;</span>, <span class="hljs-string">&quot;base64&quot;</span>);
+<span class="hljs-built_in">console</span>.log(buf);
+<span class="hljs-comment">// &#x6253;&#x5370;: &lt;Buffer 68 65 6c 6c 6f 20 77 6f 72 6c 64&gt;</span>
+</code></pre>
+<h4 id="bufferallocunsafesize">Buffer.allocUnsafe(size)</h4>
+<ul>
+<li>size: integer &#x65B0;&#x5EFA;&#x7684; Buffer &#x7684;&#x957F;&#x5EA6;&#x3002;</li>
+</ul>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5927;&#x5C0F;&#x4E3A; size &#x5B57;&#x8282;&#x7684;&#x65B0; Buffer&#x3002; &#x5982;&#x679C; size &#x5927;&#x4E8E; buffer.constants.MAX_LENGTH &#x6216;&#x5C0F;&#x4E8E; 0&#xFF0C;&#x5219;&#x629B;&#x51FA; ERR_INVALID_OPT_VALUE&#x3002;</p>
+<p>&#x4EE5;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x521B;&#x5EFA;&#x7684; Buffer &#x5B9E;&#x4F8B;&#x7684;&#x5E95;&#x5C42;&#x5185;&#x5B58;&#x662F;&#x672A;&#x521D;&#x59CB;&#x5316;&#x7684;&#x3002; &#x65B0;&#x521B;&#x5EFA;&#x7684; Buffer &#x7684;&#x5185;&#x5BB9;&#x662F;&#x672A;&#x77E5;&#x7684;&#xFF0C;&#x53EF;&#x80FD;&#x5305;&#x542B;&#x654F;&#x611F;&#x6570;&#x636E;&#x3002; &#x4F7F;&#x7528; Buffer.alloc() &#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x4EE5;&#x96F6;&#x521D;&#x59CB;&#x5316;&#x7684; Buffer &#x5B9E;&#x4F8B;&#x3002;</p>
+<p>&#x5982;&#x679C; size &#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5219;&#x629B;&#x51FA; TypeError&#x3002;</p>
+<p>Buffer &#x6A21;&#x5757;&#x4F1A;&#x9884;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x7684;&#x5927;&#x5C0F;&#x4E3A; Buffer.poolSize &#x7684; Buffer &#x5B9E;&#x4F8B;&#xFF0C;&#x4F5C;&#x4E3A;&#x5FEB;&#x901F;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x6C60;&#xFF0C;&#x7528;&#x4E8E;&#x4F7F;&#x7528; Buffer.allocUnsafe() &#x521B;&#x5EFA;&#x65B0;&#x7684; Buffer &#x5B9E;&#x4F8B;&#x3001;&#x6216; Buffer.from(array)&#x3001;&#x6216;&#x5F03;&#x7528;&#x7684; new Buffer(size) &#x6784;&#x9020;&#x5668;&#x4F46;&#x4EC5;&#x5F53; size &#x5C0F;&#x4E8E;&#x6216;&#x7B49;&#x4E8E; Buffer.poolSize &gt;&gt; 1&#xFF08;Buffer.poolSize &#x9664;&#x4EE5;&#x4E8C;&#x518D;&#x5411;&#x4E0B;&#x53D6;&#x6574;&#xFF09;&#x3002;</p>
+<p>&#x5BF9;&#x8FD9;&#x4E2A;&#x9884;&#x5206;&#x914D;&#x7684;&#x5185;&#x90E8;&#x5185;&#x5B58;&#x6C60;&#x7684;&#x4F7F;&#x7528;&#x662F;&#x8C03;&#x7528; Buffer.alloc(size, fill) &#x548C; Buffer.allocUnsafe(size).fill(fill) &#x4E24;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x952E;&#x533A;&#x522B;&#x3002; &#x5177;&#x4F53;&#x6765;&#x8BF4;&#xFF0C; Buffer.alloc(size, fill) &#x6C38;&#x8FDC;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528;&#x5185;&#x90E8;&#x7684; Buffer &#x6C60;&#xFF0C;&#x800C; Buffer.allocUnsafe(size).fill(fill) &#x5728; size &#x5C0F;&#x4E8E;&#x6216;&#x7B49;&#x4E8E; Buffer.poolSize &#x7684;&#x4E00;&#x534A;&#x65F6;&#x5C06;&#x4F1A;&#x4F7F;&#x7528;&#x5185;&#x90E8;&#x7684; Buffer &#x6C60;&#x3002; &#x8BE5;&#x5DEE;&#x5F02;&#x867D;&#x7136;&#x5F88;&#x5FAE;&#x5999;&#xFF0C;&#x4F46;&#x5F53;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x9700;&#x8981; Buffer.allocUnsafe() &#x63D0;&#x4F9B;&#x7684;&#x989D;&#x5916;&#x6027;&#x80FD;&#x65F6;&#xFF0C;&#x5219;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;</p>
+<h4 id="bufferallocunsafeslowsize">Buffer.allocUnsafeSlow(size)</h4>
+<ul>
+<li>size: integer &#x65B0;&#x5EFA;&#x7684; Buffer &#x7684;&#x957F;&#x5EA6;&#x3002;</li>
+</ul>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5927;&#x5C0F;&#x4E3A; size &#x5B57;&#x8282;&#x7684;&#x65B0; Buffer&#x3002; &#x5982;&#x679C; size &#x5927;&#x4E8E; buffer.constants.MAX_LENGTH &#x6216;&#x5C0F;&#x4E8E; 0&#xFF0C;&#x5219;&#x629B;&#x51FA; ERR_INVALID_OPT_VALUE&#x3002; &#x5982;&#x679C; size &#x4E3A; 0&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x957F;&#x5EA6;&#x4E3A;&#x96F6;&#x7684; Buffer&#x3002;</p>
+<p>&#x4EE5;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x521B;&#x5EFA;&#x7684; Buffer &#x5B9E;&#x4F8B;&#x7684;&#x5E95;&#x5C42;&#x5185;&#x5B58;&#x662F;&#x672A;&#x521D;&#x59CB;&#x5316;&#x7684;&#x3002; Buffer &#x7684;&#x5185;&#x5BB9;&#x662F;&#x672A;&#x77E5;&#x7684;&#xFF0C;&#x53EF;&#x80FD;&#x5305;&#x542B;&#x654F;&#x611F;&#x6570;&#x636E;&#x3002; &#x4F7F;&#x7528; buf.fill(0) &#x53EF;&#x4EE5;&#x4EE5;&#x96F6;&#x521D;&#x59CB;&#x5316; Buffer &#x5B9E;&#x4F8B;&#x3002;</p>
+<p>&#x5F53;&#x4F7F;&#x7528; Buffer.allocUnsafe() &#x521B;&#x5EFA;&#x65B0;&#x7684; Buffer &#x5B9E;&#x4F8B;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x5C0F;&#x4E8E; 4KB&#xFF0C;&#x5219;&#x4F1A;&#x4ECE;&#x4E00;&#x4E2A;&#x9884;&#x5206;&#x914D;&#x7684; Buffer &#x5207;&#x5272;&#x51FA;&#x6765;&#x3002; &#x8FD9;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x56E0;&#x521B;&#x5EFA;&#x592A;&#x591A;&#x72EC;&#x7ACB;&#x7684; Buffer &#x800C;&#x8FC7;&#x5EA6;&#x4F7F;&#x7528;&#x3002; &#x901A;&#x8FC7;&#x6D88;&#x9664;&#x8DDF;&#x8E2A;&#x548C;&#x6E05;&#x7406;&#x5C3D;&#x53EF;&#x80FD;&#x591A;&#x7684;&#x5355;&#x4E2A; ArrayBuffer &#x5BF9;&#x8C61;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x63D0;&#x9AD8;&#x6027;&#x80FD;&#x548C;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x7387;&#x3002;</p>
+<p>&#x5F53;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x9700;&#x8981;&#x5728;&#x5185;&#x5B58;&#x6C60;&#x4E2D;&#x4FDD;&#x7559;&#x4E00;&#x5C0F;&#x5757;&#x5185;&#x5B58;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Buffer.allocUnsafeSlow() &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x975E;&#x5185;&#x5B58;&#x6C60;&#x7684; Buffer &#x5B9E;&#x4F8B;&#x5E76;&#x62F7;&#x8D1D;&#x76F8;&#x5173;&#x7684;&#x6BD4;&#x7279;&#x4F4D;&#x51FA;&#x6765;&#x3002;</p>
+<p>&#x5982;&#x679C; size &#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5219;&#x629B;&#x51FA; TypeError&#x3002;</p>
+<h4 id="bufferbytelengthstringencoding">Buffer.byteLength(string,encoding)</h4>
+<ul>
+<li><p>string: string | Buffer | TypedArray | DataView | ArrayBuffer | SharedArrayBuffer &#x8981;&#x8BA1;&#x7B97;&#x957F;&#x5EA6;&#x7684;&#x503C;&#x3002;</p>
+</li>
+<li><p>encoding: string &#x5982;&#x679C; string &#x662F;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5219;&#x8FD9;&#x662F;&#x5B83;&#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: &apos;utf8&apos;&#x3002;</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;: integer string &#x4E2D;&#x5305;&#x542B;&#x7684;&#x5B57;&#x8282;&#x6570;&#x3002;</p>
+</li>
+</ul>
+<p>&#x5F53;&#x4F7F;&#x7528; encoding &#x8FDB;&#x884C;&#x7F16;&#x7801;&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5B57;&#x8282;&#x957F;&#x5EA6;&#x3002; &#x4E0E; String.prototype.length &#x4E0D;&#x540C;&#xFF0C;&#x540E;&#x8005;&#x4E0D;&#x4F1A;&#x8003;&#x8651;&#x7528;&#x4E8E;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x8282;&#x7684;&#x7F16;&#x7801;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E; &apos;base64&apos; &#x548C; &apos;hex&apos;&#xFF0C;&#x6B64;&#x51FD;&#x6570;&#x4F1A;&#x5047;&#x5B9A;&#x8F93;&#x5165;&#x662F;&#x6709;&#x6548;&#x7684;&#x3002; &#x5BF9;&#x4E8E;&#x5305;&#x542B;&#x975E; base64/hex &#x7F16;&#x7801;&#x7684;&#x6570;&#x636E;&#xFF08;&#x4F8B;&#x5982;&#x7A7A;&#x683C;&#xFF09;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x53EF;&#x80FD;&#x662F;&#x5927;&#x4E8E;&#x4ECE;&#x5B57;&#x7B26;&#x4E32;&#x521B;&#x5EFA;&#x7684; Buffer &#x7684;&#x957F;&#x5EA6;&#x3002;</p>
+<blockquote>
+<p>&#x5F53; string &#x662F;&#x4E00;&#x4E2A; Buffer/DataView/TypedArray/ArrayBuffer/SharedArrayBuffer &#x65F6;&#xFF0C;&#x8FD4;&#x56DE; .byteLength &#x62A5;&#x544A;&#x7684;&#x5B57;&#x8282;&#x957F;&#x5EA6;</p>
+</blockquote>
+<h4 id="buffercomparebuf1-buf2">Buffer.compare(buf1, buf2)</h4>
+<ul>
+<li><p>buf1: Buffer | Uint8Array</p>
+</li>
+<li><p>buf2: Buffer | Uint8Array</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;: integer -1&#x3001; 0 &#x6216; 1&#xFF0C;&#x53D6;&#x51B3;&#x4E8E;&#x6BD4;&#x8F83;&#x7684;&#x7ED3;&#x679C;&#x3002;&#x6BD4;&#x8F83; buf1 &#x4E0E; buf2&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x4E8E; Buffer &#x5B9E;&#x4F8B;&#x6570;&#x7EC4;&#x7684;&#x6392;&#x5E8F;&#x3002; &#x76F8;&#x5F53;&#x4E8E;&#x8C03;&#x7528; buf1.compare(buf2)&#x3002;</p>
+</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> buf1 = Buffer.from(<span class="hljs-string">&quot;1234&quot;</span>);
+<span class="hljs-keyword">const</span> buf2 = Buffer.from(<span class="hljs-string">&quot;0123&quot;</span>);
+<span class="hljs-keyword">const</span> arr = [buf1, buf2];
+<span class="hljs-built_in">console</span>.log(arr.sort(Buffer.compare));
+<span class="hljs-comment">// &#x6253;&#x5370;: [ &lt;Buffer 30 31 32 33&gt;, &lt;Buffer 31 32 33 34&gt; ]</span>
+<span class="hljs-comment">// (&#x7ED3;&#x679C;&#x76F8;&#x5F53;&#x4E8E;: [buf2, buf1])</span>
+</code></pre>
+<h4 id="bufferconcatlisttotallength">Buffer.concat(list,totalLength)</h4>
+<ul>
+<li><p>list: Buffer[] | Uint8Array[] &#x8981;&#x5408;&#x5E76;&#x7684; Buffer &#x6570;&#x7EC4;&#x6216; Uint8Array &#x6570;&#x7EC4;&#x3002;</p>
+</li>
+<li><p>totalLength: integer &#x5408;&#x5E76;&#x540E; list &#x4E2D;&#x7684; Buffer &#x5B9E;&#x4F8B;&#x7684;&#x603B;&#x957F;&#x5EA6;&#x3002;</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;: Buffer</p>
+</li>
+</ul>
+<p>&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5408;&#x5E76;&#x4E86; list &#x4E2D;&#x6240;&#x6709; Buffer &#x5B9E;&#x4F8B;&#x7684;&#x65B0; Buffer&#x3002;</p>
+<p>&#x5982;&#x679C; list &#x4E2D;&#x6CA1;&#x6709;&#x5143;&#x7D20;&#x3001;&#x6216; totalLength &#x4E3A; 0&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x957F;&#x5EA6;&#x4E3A; 0 &#x7684; Buffer&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x63D0;&#x4F9B; totalLength&#xFF0C;&#x5219;&#x901A;&#x8FC7;&#x5C06; list &#x4E2D;&#x7684; Buffer &#x5B9E;&#x4F8B;&#x7684;&#x957F;&#x5EA6;&#x76F8;&#x52A0;&#x6765;&#x8BA1;&#x7B97;&#x5F97;&#x51FA;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x63D0;&#x4F9B;&#x4E86; totalLength&#xFF0C;&#x5219;&#x4F1A;&#x5F3A;&#x5236;&#x8F6C;&#x6362;&#x4E3A;&#x65E0;&#x7B26;&#x53F7;&#x6574;&#x6570;&#x3002; &#x5982;&#x679C; list &#x4E2D;&#x7684; Buffer &#x5408;&#x5E76;&#x540E;&#x7684;&#x603B;&#x957F;&#x5EA6;&#x5927;&#x4E8E; totalLength&#xFF0C;&#x5219;&#x7ED3;&#x679C;&#x4F1A;&#x88AB;&#x622A;&#x65AD;&#x5230; totalLength &#x7684;&#x957F;&#x5EA6;&#x3002;</p>
+<h4 id="bufferfromarray">Buffer.from(array)</h4>
+<ul>
+<li>array: integer[]</li>
+</ul>
+<p>&#x4F7F;&#x7528; 0 &#x2013; 255 &#x8303;&#x56F4;&#x5185;&#x7684;&#x5B57;&#x8282;&#x6570;&#x7EC4; array &#x6765;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x65B0;&#x7684; Buffer&#x3002; &#x8D85;&#x51FA;&#x8BE5;&#x8303;&#x56F4;&#x7684;&#x6570;&#x7EC4;&#x6761;&#x76EE;&#x4F1A;&#x88AB;&#x622A;&#x65AD;&#x4EE5;&#x9002;&#x5408;&#x5B83;&#x3002;</p>
+<h4 id="bufferfromarraybufferbyteoffsetlength">Buffer.from(arrayBuffer,byteOffset,length)</h4>
+<ul>
+<li><p>arrayBuffer: ArrayBuffer | SharedArrayBuffer &#x4E00;&#x4E2A; ArrayBuffer &#x6216; SharedArrayBuffer&#xFF0C;&#x4F8B;&#x5982; TypedArray &#x7684; .buffer &#x5C5E;&#x6027;&#x3002;</p>
+</li>
+<li><p>byteOffset: integer &#x5F00;&#x59CB;&#x62F7;&#x8D1D;&#x7684;&#x7D22;&#x5F15;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: 0&#x3002;</p>
+</li>
+<li><p>length: integer &#x62F7;&#x8D1D;&#x7684;&#x5B57;&#x8282;&#x6570;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: arrayBuffer.byteLength - byteOffset&#x3002;</p>
+</li>
+</ul>
+<p>&#x521B;&#x5EFA; ArrayBuffer &#x7684;&#x89C6;&#x56FE;&#xFF0C;&#x4F46;&#x4E0D;&#x4F1A;&#x62F7;&#x8D1D;&#x5E95;&#x5C42;&#x5185;&#x5B58;&#x3002; &#x4F8B;&#x5982;&#xFF0C;&#x5F53;&#x4F20;&#x5165; TypedArray &#x7684; .buffer &#x5C5E;&#x6027;&#x7684;&#x5F15;&#x7528;&#x65F6;&#xFF0C;&#x65B0;&#x5EFA;&#x7684; Buffer &#x4F1A;&#x4E0E; TypedArray &#x5171;&#x4EAB;&#x540C;&#x4E00;&#x5185;&#x5B58;&#x3002;</p>
+<p>&#x53EF;&#x9009;&#x7684; byteOffset &#x548C; length &#x53C2;&#x6570;&#x6307;&#x5B9A; arrayBuffer &#x4E2D;&#x4E0E; Buffer &#x5171;&#x4EAB;&#x7684;&#x5185;&#x5B58;&#x8303;&#x56F4;&#x3002;</p>
+<p>&#x5982;&#x679C; arrayBuffer &#x4E0D;&#x662F;&#x4E00;&#x4E2A; ArrayBuffer&#x3001;SharedArrayBuffer &#x6216;&#x9002;&#x7528;&#x4E8E; Buffer.from() &#x53D8;&#x91CF;&#x7684;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#xFF0C;&#x5219;&#x629B;&#x51FA; TypeError&#x3002;</p>
+<h4 id="bufferfrombuffer">Buffer.from(buffer)</h4>
+<ul>
+<li>buffer: Buffer | Uint8Array &#x8981;&#x62F7;&#x8D1D;&#x6570;&#x636E;&#x7684; Buffer &#x6216; Uint8Array&#x3002;</li>
+</ul>
+<p>&#x62F7;&#x8D1D; buffer &#x7684;&#x6570;&#x636E;&#x5230;&#x65B0;&#x5EFA;&#x7684; Buffer &#x5B9E;&#x4F8B;&#x3002;</p>
+<p>&#x5982;&#x679C; buffer &#x4E0D;&#x662F;&#x4E00;&#x4E2A; Buffer &#x6216;&#x9002;&#x7528;&#x4E8E; Buffer.from() &#x53D8;&#x91CF;&#x7684;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#xFF0C;&#x5219;&#x629B;&#x51FA; TypeError&#x3002;</p>
+<h4 id="bufferfromobjectoffsetorencodinglength">Buffer.from(object,offsetOrEncoding,length)</h4>
+<ul>
+<li><p>object: Object &#x652F;&#x6301; Symbol.toPrimitive &#x6216; valueOf() &#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li><p>offsetOrEncoding: integer | string &#x5B57;&#x8282;&#x504F;&#x79FB;&#x91CF;&#x6216;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002;</p>
+</li>
+<li><p>length: integer &#x957F;&#x5EA6;&#x3002;</p>
+</li>
+</ul>
+<p>&#x5BF9;&#x4E8E; valueOf() &#x8FD4;&#x56DE;&#x503C;&#x4E0D;&#x4E25;&#x683C;&#x7B49;&#x4E8E; object &#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD4;&#x56DE; Buffer.from(object.valueOf(), offsetOrEncoding, length)&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x652F;&#x6301; Symbol.toPrimitive &#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4F1A;&#x8FD4;&#x56DE; Buffer.from(object[Symbol.toPrimitive](&apos;string&apos;), offsetOrEncoding&#x3002;</p>
+<h4 id="bufferfromstringencoding">Buffer.from(string,encoding)</h4>
+<ul>
+<li><p>string: string &#x8981;&#x7F16;&#x7801;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+</li>
+<li><p>encoding: string string &#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: &apos;utf8&apos;&#x3002;</p>
+</li>
+</ul>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5305;&#x542B; string &#x7684;&#x65B0; Buffer&#x3002; encoding &#x53C2;&#x6570;&#x6307;&#x5B9A;&#x7528;&#x4E8E;&#x5C06; string &#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x8282;&#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002;</p>
+<p>&#x5982;&#x679C; string &#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x6216;&#x9002;&#x7528;&#x4E8E; Buffer.from() &#x53D8;&#x91CF;&#x7684;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#xFF0C;&#x5219;&#x629B;&#x51FA; TypeError&#x3002;</p>
+<h4 id="bufferisbufferobj">Buffer.isBuffer(obj)</h4>
+<ul>
+<li><p>obj: Object</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;: boolean (true &#x6216;&#x8005; false)</p>
+</li>
+</ul>
+<p>&#x5982;&#x679C; obj &#x662F;&#x4E00;&#x4E2A; Buffer&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE; false&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-built_in">console</span>.log(Buffer.isEncoding(<span class="hljs-string">&quot;utf-8&quot;</span>));
+<span class="hljs-comment">// &#x6253;&#x5370;: true</span>
+
+<span class="hljs-built_in">console</span>.log(Buffer.isEncoding(<span class="hljs-string">&quot;hex&quot;</span>));
+<span class="hljs-comment">// &#x6253;&#x5370;: true</span>
+
+<span class="hljs-built_in">console</span>.log(Buffer.isEncoding(<span class="hljs-string">&quot;utf/8&quot;</span>));
+<span class="hljs-comment">// &#x6253;&#x5370;: false</span>
+
+<span class="hljs-built_in">console</span>.log(Buffer.isEncoding(<span class="hljs-string">&quot;&quot;</span>));
+<span class="hljs-comment">// &#x6253;&#x5370;: false</span>
+</code></pre>
+<h4 id="bufferisencodingencoding">Buffer.isEncoding(encoding)</h4>
+<ul>
+<li><p>encoding: string &#x8981;&#x68C0;&#x67E5;&#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x540D;&#x79F0;&#x3002;</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;: boolean &#x503C;</p>
+</li>
+</ul>
+<p>&#x5982;&#x679C; encoding &#x662F;&#x652F;&#x6301;&#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE; false&#x3002;</p>
+<h4 id="bufferpoolsize">Buffer.poolSize</h4>
+<p>&#x8FD9;&#x662F;&#x7528;&#x4E8E;&#x7F13;&#x51B2;&#x6C60;&#x7684;&#x9884;&#x5206;&#x914D;&#x7684;&#x5185;&#x90E8; Buffer &#x5B9E;&#x4F8B;&#x7684;&#x5927;&#x5C0F;&#xFF08;&#x4EE5;&#x5B57;&#x8282;&#x4E3A;&#x5355;&#x4F4D;&#xFF09;&#x3002; &#x8BE5;&#x503C;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x3002;</p>
+<ul>
+<li>&#x957F;&#x5EA6;: integer &#x9ED8;&#x8BA4;&#x503C;: 8192&#x3002;</li>
+</ul>
+<h4 id="bufferindex">buffer[index]</h4>
+<ul>
+<li>index: integer</li>
+</ul>
+<p>&#x7D22;&#x5F15;&#x64CD;&#x4F5C;&#x7B26; [index] &#x53EF;&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x6216;&#x8BBE;&#x7F6E; buf &#x4E2D;&#x6307;&#x5B9A;&#x7684; index &#x4F4D;&#x7F6E;&#x7684;&#x516B;&#x4F4D;&#x5B57;&#x8282;&#x3002; &#x8BE5;&#x503C;&#x6307;&#x5411;&#x5355;&#x4E2A;&#x5B57;&#x8282;&#xFF0C;&#x6240;&#x4EE5;&#x6709;&#x6548;&#x7684;&#x503C;&#x7684;&#x8303;&#x56F4;&#x662F; 0x00 &#x81F3; 0xFF&#xFF08;&#x5341;&#x516D;&#x8FDB;&#x5236;&#xFF09;&#x3001;&#x6216; 0 &#x81F3; 255&#xFF08;&#x5341;&#x8FDB;&#x5236;&#xFF09;&#x3002;</p>
+<p>&#x8BE5;&#x64CD;&#x4F5C;&#x7B26;&#x7EE7;&#x627F;&#x81EA; Uint8Array&#xFF0C;&#x6240;&#x4EE5;&#x5BF9;&#x8D8A;&#x754C;&#x8BBF;&#x95EE;&#x7684;&#x884C;&#x4E3A;&#x4E0E; Uint8Array &#x76F8;&#x540C;&#x3002; &#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5F53; index &#x4E3A;&#x8D1F;&#x6570;&#x6216;&#x5927;&#x4E8E;&#x6216;&#x7B49;&#x4E8E; buf.length &#x65F6;&#xFF0C;&#x5219; buf[index] &#x8FD4;&#x56DE; undefined&#xFF0C;&#x800C;&#x5982;&#x679C; index &#x4E3A;&#x8D1F;&#x6570;&#x6216; &gt;= buf.length &#x65F6;&#xFF0C;&#x5219; buf[index] = value &#x4E0D;&#x4F1A;&#x4FEE;&#x6539;&#x8BE5; buffer&#x3002;</p>
+<h4 id="bufbuffer">buf.buffer</h4>
+<ul>
+<li>ArrayBuffer &#x521B;&#x5EFA;&#x6B64; Buffer &#x5BF9;&#x8C61;&#x65F6;&#x57FA;&#x4E8E;&#x7684;&#x5E95;&#x5C42; ArrayBuffer &#x5BF9;&#x8C61;&#x3002;</li>
+</ul>
+<p>&#x4E0D;&#x80FD;&#x4FDD;&#x8BC1;&#x6B64; ArrayBuffer &#x4E0E;&#x539F;&#x59CB;&#x7684; Buffer &#x5B8C;&#x5168;&#x5BF9;&#x5E94;&#x3002; &#x6709;&#x5173;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#xFF0C;&#x53C2;&#x89C1; buf.byteOffset &#x4E0A;&#x7684;&#x8BF4;&#x660E;&#x3002;</p>
+<h4 id="bufbyteoffset">buf.byteOffset</h4>
+<ul>
+<li>integer  Buffer &#x5E95;&#x5C42;&#x7684; ArrayBuffer &#x5BF9;&#x8C61;&#x7684; byteOffset&#x3002;</li>
+</ul>
+<p>&#x5F53; Buffer.from(ArrayBuffer, byteOffset, length) &#x8BBE;&#x7F6E;&#x4E86; byteOffset &#x6216;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5C0F;&#x4E8E; Buffer.poolSize &#x7684; Buffer &#x65F6;&#xFF0C;&#x5E95;&#x5C42;&#x7684; ArrayBuffer &#x7684;&#x504F;&#x79FB;&#x91CF;&#x5E76;&#x4E0D;&#x662F;&#x4ECE; 0 &#x5F00;&#x59CB;&#x3002;&#x5F53;&#x76F4;&#x63A5;&#x4F7F;&#x7528; buf.buffer &#x8BBF;&#x95EE;&#x5E95;&#x5C42;&#x7684; ArrayBuffer &#x65F6;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x4E3A; ArrayBuffer &#x7684;&#x5176;&#x4ED6;&#x90E8;&#x5206;&#x53EF;&#x80FD;&#x5E76;&#x4E0D;&#x6307;&#x5411; Buffer &#x5BF9;&#x8C61;&#x3002;&#x5F53;&#x521B;&#x5EFA;&#x4E0E; Buffer &#x5171;&#x4EAB;&#x5176;&#x5185;&#x5B58;&#x7684; TypedArray &#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x6B63;&#x786E;&#x5730;&#x6307;&#x5B9A; byteOffset&#x3002;</p>
+<h4 id="bufcomparetargettargetstarttargetendsourcestartsourceend">buf.compare(target,targetStart,targetEnd,sourceStart,sourceEnd)</h4>
+<ul>
+<li><p>target: Buffer | Uint8Array &#x8981;&#x4E0E; buf &#x5BF9;&#x6BD4;&#x7684; Buffer &#x6216; Uint8Array&#x3002;</p>
+</li>
+<li><p>targetStart: integer target &#x4E2D;&#x5F00;&#x59CB;&#x5BF9;&#x6BD4;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: 0&#x3002;</p>
+</li>
+<li><p>targetEnd: integer target &#x4E2D;&#x7ED3;&#x675F;&#x5BF9;&#x6BD4;&#x7684;&#x504F;&#x79FB;&#x91CF;&#xFF08;&#x4E0D;&#x5305;&#x542B;&#xFF09;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: target.length&#x3002;</p>
+</li>
+<li><p>sourceStart: integer buf &#x4E2D;&#x5F00;&#x59CB;&#x5BF9;&#x6BD4;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: 0&#x3002;</p>
+</li>
+<li><p>sourceEnd: integer buf &#x4E2D;&#x7ED3;&#x675F;&#x5BF9;&#x6BD4;&#x7684;&#x504F;&#x79FB;&#x91CF;&#xFF08;&#x4E0D;&#x5305;&#x542B;&#xFF09;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: buf.length&#x3002;</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;: integer</p>
+</li>
+</ul>
+<p>&#x5BF9;&#x6BD4; buf &#x4E0E; target&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6570;&#x503C;&#xFF0C;&#x8868;&#x660E; buf &#x5728;&#x6392;&#x5E8F;&#x4E0A;&#x662F;&#x5426;&#x6392;&#x5728; target &#x524D;&#x9762;&#x3001;&#x6216;&#x540E;&#x9762;&#x3001;&#x6216;&#x76F8;&#x540C;&#x3002; &#x5BF9;&#x6BD4;&#x662F;&#x57FA;&#x4E8E;&#x5404;&#x81EA; Buffer &#x5B9E;&#x9645;&#x7684;&#x5B57;&#x8282;&#x5E8F;&#x5217;&#x3002;</p>
+<ol>
+<li><p>&#x5982;&#x679C; target &#x4E0E; buf &#x76F8;&#x540C;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; 0&#x3002;</p>
+</li>
+<li><p>&#x5982;&#x679C; target &#x6392;&#x5728; buf &#x524D;&#x9762;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; 1&#x3002;</p>
+</li>
+<li><p>&#x5982;&#x679C; target &#x6392;&#x5728; buf &#x540E;&#x9762;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; -1&#x3002;</p>
+</li>
+</ol>
+<p>targetStart&#x3001; targetEnd&#x3001; sourceStart &#x4E0E; sourceEnd &#x53EF;&#x7528;&#x4E8E;&#x6307;&#x5B9A; target &#x4E0E; buf &#x4E2D;&#x5BF9;&#x6BD4;&#x7684;&#x8303;&#x56F4;&#x3002;</p>
+<p>&#x5982;&#x679C; targetStart &lt; 0&#x3001; sourceStart &lt; 0&#x3001; targetEnd &gt; target.byteLength &#x6216; sourceEnd &gt; source.byteLength&#xFF0C;&#x5219;&#x629B;&#x51FA; ERR_OUT_OF_RANGE&#x3002;</p>
+<h4 id="bufcopytargettargetstartsourcestartsourceend">buf.copy(target,targetStart,sourceStart,sourceEnd)</h4>
+<ul>
+<li><p>target: Buffer | Uint8Array &#x8981;&#x62F7;&#x8D1D;&#x8FDB;&#x7684; Buffer &#x6216; Uint8Array&#x3002;</p>
+</li>
+<li><p>targetStart: integer target &#x4E2D;&#x5F00;&#x59CB;&#x5199;&#x5165;&#x4E4B;&#x524D;&#x8981;&#x8DF3;&#x8FC7;&#x7684;&#x5B57;&#x8282;&#x6570;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: 0&#x3002;</p>
+</li>
+<li><p>sourceStart: integer buf &#x4E2D;&#x5F00;&#x59CB;&#x62F7;&#x8D1D;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: 0&#x3002;</p>
+</li>
+<li><p>sourceEnd: integer buf &#x4E2D;&#x7ED3;&#x675F;&#x62F7;&#x8D1D;&#x7684;&#x504F;&#x79FB;&#x91CF;&#xFF08;&#x4E0D;&#x5305;&#x542B;&#xFF09;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: buf.length&#x3002;</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;: integer &#x62F7;&#x8D1D;&#x7684;&#x5B57;&#x8282;&#x6570;&#x3002;</p>
+</li>
+</ul>
+<p>&#x62F7;&#x8D1D; buf &#x4E2D;&#x67D0;&#x4E2A;&#x533A;&#x57DF;&#x7684;&#x6570;&#x636E;&#x5230; target &#x4E2D;&#x7684;&#x67D0;&#x4E2A;&#x533A;&#x57DF;&#xFF0C;&#x5373;&#x4F7F; target &#x7684;&#x5185;&#x5B58;&#x533A;&#x57DF;&#x4E0E; buf &#x7684;&#x91CD;&#x53E0;&#x3002;</p>
+<p>TypedArray#set() &#x6267;&#x884C;&#x76F8;&#x540C;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x7528;&#x4E8E;&#x6240;&#x6709;&#x7684; TypedArray&#xFF0C;&#x5305;&#x62EC; Node.js &#x7684; Buffer&#xFF0C;&#x5C3D;&#x7BA1;&#x5B83;&#x91C7;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x51FD;&#x6570;&#x53C2;&#x6570;&#x3002;</p>
+<h4 id="bufentries">buf.entries()</h4>
+<ul>
+<li>&#x8FD4;&#x56DE;: Iterator</li>
+</ul>
+<p>&#x7528; buf &#x7684;&#x5185;&#x5BB9;&#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; [index, byte] &#x5F62;&#x5F0F;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x3002;</p>
+<h4 id="bufequalsotherbuffer">buf.equals(otherBuffer)</h4>
+<ul>
+<li><p>otherBuffer: Buffer &#x8981;&#x4E0E; bur &#x5BF9;&#x6BD4;&#x7684; Buffer &#x6216; Uint8Array&#x3002;</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;: boolean</p>
+</li>
+</ul>
+<p>&#x5982;&#x679C; buf &#x4E0E; otherBuffer &#x5177;&#x6709;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x7684;&#x5B57;&#x8282;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE; false&#x3002; &#x76F8;&#x5F53;&#x4E8E; buf.compare(otherBuffer) === 0&#x3002;</p>
+<h4 id="buffillvalueoffsetendencoding">buf.fill(value,offset,end,encoding])</h4>
+<ul>
+<li><p>value: string | Buffer | Uint8Array | integer &#x7528;&#x6765;&#x586B;&#x5145; buf &#x7684;&#x503C;&#x3002;</p>
+</li>
+<li><p>offset: integer &#x5F00;&#x59CB;&#x586B;&#x5145; buf &#x7684;&#x504F;&#x79FB;&#x91CF;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: 0&#x3002;</p>
+</li>
+<li><p>end: integer &#x7ED3;&#x675F;&#x586B;&#x5145; buf &#x7684;&#x504F;&#x79FB;&#x91CF;&#xFF08;&#x4E0D;&#x5305;&#x542B;&#xFF09;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: buf.length&#x3002;</p>
+</li>
+<li><p>encoding: string &#x5982;&#x679C; value &#x662F;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5219;&#x6307;&#x5B9A; value &#x7684;&#x5B57;&#x7B26;&#x7F16;&#x7801;&#x3002;&#x9ED8;&#x8BA4;&#x503C;: &apos;utf8&apos;&#x3002;</p>
+</li>
+<li><p>&#x8FD4;&#x56DE;: Buffer buf &#x7684;&#x5F15;&#x7528;&#x3002;</p>
+</li>
+</ul>
+<p>&#x7528;&#x6307;&#x5B9A;&#x7684; value &#x586B;&#x5145; buf&#x3002; &#x5982;&#x679C;&#x6CA1;&#x6709;&#x6307;&#x5B9A; offset &#x4E0E; end&#xFF0C;&#x5219;&#x586B;&#x5145;&#x6574;&#x4E2A; buf&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// &#x7528; ASCII &#x5B57;&#x7B26; &apos;h&apos; &#x586B;&#x5145; `Buffer`&#x3002;</span>
+<span class="hljs-keyword">const</span> b = Buffer.allocUnsafe(<span class="hljs-number">50</span>).fill(<span class="hljs-string">&quot;h&quot;</span>);
+<span class="hljs-built_in">console</span>.log(b.toString());
+<span class="hljs-comment">// &#x6253;&#x5370;: hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span>
+</code></pre>
+<p>&#x5982;&#x679C; value &#x4E0D;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x3001; Buffer&#x3001;&#x6216;&#x6574;&#x6570;&#xFF0C;&#x5219;&#x4F1A;&#x88AB;&#x8F6C;&#x6362;&#x4E3A; uint32 &#x503C;&#x3002; &#x5982;&#x679C;&#x5F97;&#x5230;&#x7684;&#x6574;&#x6570;&#x5927;&#x4E8E; 255&#xFF08;&#x5341;&#x8FDB;&#x5236;&#xFF09;&#xFF0C;&#x5219; buf &#x5C06;&#x4F1A;&#x4F7F;&#x7528; value &amp; 255 &#x586B;&#x5145;&#x3002;</p>
+<p>&#x5982;&#x679C; fill() &#x6700;&#x540E;&#x5199;&#x5165;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x591A;&#x5B57;&#x8282;&#x5B57;&#x7B26;&#xFF0C;&#x5219;&#x53EA;&#x5199;&#x5165;&#x9002;&#x5408; buf &#x7684;&#x5B57;&#x8282;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// &#x4F7F;&#x7528;&#x5728; UTF-8 &#x4E2D;&#x5360;&#x7528;&#x4E24;&#x4E2A;&#x5B57;&#x8282;&#x7684;&#x5B57;&#x7B26;&#x6765;&#x586B;&#x5145; `Buffer`&#x3002;</span>
+<span class="hljs-built_in">console</span>.log(Buffer.allocUnsafe(<span class="hljs-number">5</span>).fill(<span class="hljs-string">&quot;\u0222&quot;</span>));
+<span class="hljs-comment">// &#x6253;&#x5370;: &lt;Buffer c8 a2 c8 a2 c8&gt;</span>
+</code></pre>
+<p>&#x5982;&#x679C; value &#x5305;&#x542B;&#x65E0;&#x6548;&#x7684;&#x5B57;&#x7B26;&#xFF0C;&#x5219;&#x622A;&#x6389;&#x65E0;&#x6548;&#x7684;&#x5B57;&#x7B26;&#x3002; &#x5982;&#x679C;&#x622A;&#x6389;&#x540E;&#x6CA1;&#x6709;&#x6570;&#x636E;&#xFF0C;&#x5219;&#x4E0D;&#x586B;&#x5145;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> buf = Buffer.allocUnsafe(<span class="hljs-number">5</span>);
+<span class="hljs-built_in">console</span>.log(buf.fill(<span class="hljs-string">&quot;a&quot;</span>));
+<span class="hljs-comment">// &#x6253;&#x5370;: &lt;Buffer 61 61 61 61 61&gt;</span>
+<span class="hljs-built_in">console</span>.log(buf.fill(<span class="hljs-string">&quot;aazz&quot;</span>, <span class="hljs-string">&quot;hex&quot;</span>));
+<span class="hljs-comment">// &#x6253;&#x5370;: &lt;Buffer aa aa aa aa aa&gt;</span>
+<span class="hljs-built_in">console</span>.log(buf.fill(<span class="hljs-string">&quot;zz&quot;</span>, <span class="hljs-string">&quot;hex&quot;</span>));
+<span class="hljs-comment">// &#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;</span>
+</code></pre>
 
                                 
                                 </section>
@@ -339,7 +641,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Section2.2","level":"1.3.2","depth":2,"next":{"title":"每日面试题","level":"1.4","depth":1,"path":"chapter3/README.md","ref":"chapter3/README.md","articles":[{"title":"Vue 相关","level":"1.4.1","depth":2,"path":"chapter3/section3.1.md","ref":"chapter3/section3.1.md","articles":[]},{"title":"Section3.2","level":"1.4.2","depth":2,"path":"chapter3/section3.2.md","ref":"chapter3/section3.2.md","articles":[]}]},"previous":{"title":"基本概念","level":"1.3.1","depth":2,"path":"chapter2/section2.1.md","ref":"chapter2/section2.1.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Tony Tang","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Sample GitBook","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"This is a sample book created by gitbook","extension":null},"file":{"path":"chapter2/section2.2.md","mtime":"2020-08-26T06:28:43.162Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-09-14T10:15:37.804Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Buffer","level":"1.3.2","depth":2,"next":{"title":"每日面试题","level":"1.4","depth":1,"path":"chapter3/README.md","ref":"chapter3/README.md","articles":[{"title":"Vue 相关","level":"1.4.1","depth":2,"path":"chapter3/section3.1.md","ref":"chapter3/section3.1.md","articles":[]},{"title":"Section3.2","level":"1.4.2","depth":2,"path":"chapter3/section3.2.md","ref":"chapter3/section3.2.md","articles":[]}]},"previous":{"title":"基本概念","level":"1.3.1","depth":2,"path":"chapter2/section2.1.md","ref":"chapter2/section2.1.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Tony Tang","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Sample GitBook","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"This is a sample book created by gitbook","extension":null},"file":{"path":"chapter2/section2.2.md","mtime":"2020-09-17T15:24:43.850Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-09-17T15:25:55.296Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
