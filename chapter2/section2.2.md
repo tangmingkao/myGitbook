@@ -181,6 +181,4 @@ console.log(arr.sort(Buffer.compare));
 
 -   length <integer> 长度。
 
-对于 valueOf() 返回值不严格等于 object 的对象，返回 Buffer.from(object.valueOf(), offsetOrEncoding, length)。
-
-对于支持 Symbol.toPrimitive 的对象，会返回 Buffer.from(object[Symbol.toPrimitive]('string'), offsetOrEncoding。
+对于 valueOf() 返回值不严格等于 object 的对象，返回 Buffer.from(object.valueOf(), offsetOrEncoding, length)。对于支持 Symbol.toPrimitive 的对象，会返回 Buffer.from(object[Symbol.toPrimitive]('string'), offsetOrEncoding。
