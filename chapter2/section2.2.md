@@ -193,6 +193,8 @@ console.log(arr.sort(Buffer.compare));
 
 > 如果 obj 是一个 Buffer，则返回 true，否则返回 false。
 
+---
+
 #### Buffer.isEncoding(encoding)
 
 -   encoding <string> 要检查的字符编码名称。
