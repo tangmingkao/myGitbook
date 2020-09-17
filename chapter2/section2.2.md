@@ -189,7 +189,7 @@ console.log(arr.sort(Buffer.compare));
 
 -   obj <Object>
 
--   返回: <boolean> true 或者 false
+-   返回: <boolean> true 或者 false.
 
 如果 obj 是一个 Buffer，则返回 true，否则返回 false。
 
