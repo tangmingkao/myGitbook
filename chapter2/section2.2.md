@@ -40,11 +40,11 @@ Node.js 还支持以下两种二进制转文本的编码。 对于二进制转�
 
 #### Buffer.alloc(size,fill,encoding)
 
--   size <integer> 新 Buffer 的所需长度。
+-   size: integer 新 Buffer 的所需长度。
 
--   fill <string> | <Buffer> | <Uint8Array> | <integer> 用于预填充新 Buffer 的值。默认值: 0。
+-   fill: string | Buffer | Uint8Array | integer 用于预填充新 Buffer 的值。默认值: 0。
 
--   encoding <string> 如果 fill 是一个字符串，则这是它的字符编码。默认值: 'utf8'。
+-   encoding: string 如果 fill 是一个字符串，则这是它的字符编码。默认值: 'utf8'。
 
 分配一个大小为 size 字节的新 Buffer。 如果 fill 为 undefined，则用零填充 Buffer。
 
@@ -72,7 +72,7 @@ console.log(buf);
 
 #### Buffer.allocUnsafe(size)
 
--   size <integer> 新建的 Buffer 的长度。
+-   size: integer 新建的 Buffer 的长度。
 
 创建一个大小为 size 字节的新 Buffer。 如果 size 大于 buffer.constants.MAX_LENGTH 或小于 0，则抛出 ERR_INVALID_OPT_VALUE。
 
@@ -86,7 +86,7 @@ Buffer 模块会预分配一个内部的大小为 Buffer.poolSize 的 Buffer 实
 
 #### Buffer.allocUnsafeSlow(size)
 
--   size <integer> 新建的 Buffer 的长度。
+-   size: integer 新建的 Buffer 的长度。
 
 创建一个大小为 size 字节的新 Buffer。 如果 size 大于 buffer.constants.MAX_LENGTH 或小于 0，则抛出 ERR_INVALID_OPT_VALUE。 如果 size 为 0，则创建一个长度为零的 Buffer。
 
@@ -100,11 +100,11 @@ Buffer 模块会预分配一个内部的大小为 Buffer.poolSize 的 Buffer 实
 
 #### Buffer.byteLength(string,encoding)
 
--   string <string> | <Buffer> | <TypedArray> | <DataView> | <ArrayBuffer> | <SharedArrayBuffer> 要计算长度的值。
+-   string: string | Buffer | TypedArray | DataView | ArrayBuffer | SharedArrayBuffer 要计算长度的值。
 
--   encoding <string> 如果 string 是字符串，则这是它的字符编码。默认值: 'utf8'。
+-   encoding: string 如果 string 是字符串，则这是它的字符编码。默认值: 'utf8'。
 
--   返回: <integer> string 中包含的字节数。
+-   返回: integer string 中包含的字节数。
 
 当使用 encoding 进行编码时，返回字符串的字节长度。 与 String.prototype.length 不同，后者不会考虑用于将字符串转换为字节的编码。
 
@@ -114,11 +114,11 @@ Buffer 模块会预分配一个内部的大小为 Buffer.poolSize 的 Buffer 实
 
 #### Buffer.compare(buf1, buf2)
 
--   buf1 <Buffer> | <Uint8Array>
+-   buf1: Buffer | Uint8Array
 
--   buf2 <Buffer> | <Uint8Array>
+-   buf2: Buffer | Uint8Array
 
--   返回: <integer> -1、 0 或 1，取决于比较的结果。比较 buf1 与 buf2，主要用于 Buffer 实例数组的排序。 相当于调用 buf1.compare(buf2)。
+-   返回: integer -1、 0 或 1，取决于比较的结果。比较 buf1 与 buf2，主要用于 Buffer 实例数组的排序。 相当于调用 buf1.compare(buf2)。
 
 ```javascript
 const buf1 = Buffer.from("1234");
@@ -131,11 +131,11 @@ console.log(arr.sort(Buffer.compare));
 
 #### Buffer.concat(list,totalLength)
 
--   list <Buffer[]> | <Uint8Array[]> 要合并的 Buffer 数组或 Uint8Array 数组。
+-   list: Buffer[] | Uint8Array[] 要合并的 Buffer 数组或 Uint8Array 数组。
 
--   totalLength <integer> 合并后 list 中的 Buffer 实例的总长度。
+-   totalLength: integer 合并后 list 中的 Buffer 实例的总长度。
 
--   返回: <Buffer>
+-   返回: Buffer
 
 返回一个合并了 list 中所有 Buffer 实例的新 Buffer。
 
@@ -147,17 +147,17 @@ console.log(arr.sort(Buffer.compare));
 
 #### Buffer.from(array)
 
--   array <integer[]>
+-   array: integer[]
 
 使用 0 – 255 范围内的字节数组 array 来分配一个新的 Buffer。 超出该范围的数组条目会被截断以适合它。
 
 #### Buffer.from(arrayBuffer,byteOffset,length)
 
--   arrayBuffer <ArrayBuffer> | <SharedArrayBuffer> 一个 ArrayBuffer 或 SharedArrayBuffer，例如 TypedArray 的 .buffer 属性。
+-   arrayBuffer: ArrayBuffer | SharedArrayBuffer 一个 ArrayBuffer 或 SharedArrayBuffer，例如 TypedArray 的 .buffer 属性。
 
--   byteOffset <integer> 开始拷贝的索引。默认值: 0。
+-   byteOffset: integer 开始拷贝的索引。默认值: 0。
 
--   length <integer> 拷贝的字节数。默认值: arrayBuffer.byteLength - byteOffset。
+-   length: integer 拷贝的字节数。默认值: arrayBuffer.byteLength - byteOffset。
 
 创建 ArrayBuffer 的视图，但不会拷贝底层内存。 例如，当传入 TypedArray 的 .buffer 属性的引用时，新建的 Buffer 会与 TypedArray 共享同一内存。
 
@@ -167,7 +167,7 @@ console.log(arr.sort(Buffer.compare));
 
 #### Buffer.from(buffer)
 
--   buffer <Buffer> | <Uint8Array> 要拷贝数据的 Buffer 或 Uint8Array。
+-   buffer: Buffer | Uint8Array 要拷贝数据的 Buffer 或 Uint8Array。
 
 拷贝 buffer 的数据到新建的 Buffer 实例。
 
@@ -175,11 +175,21 @@ console.log(arr.sort(Buffer.compare));
 
 #### Buffer.from(object,offsetOrEncoding,length)
 
+-   object: Object 支持 Symbol.toPrimitive 或 valueOf() 的对象。
+
+-   offsetOrEncoding: integer | string 字节偏移量或字符编码。
+
+-   length: integer 长度。
+
+对于 valueOf() 返回值不严格等于 object 的对象，返回 Buffer.from(object.valueOf(), offsetOrEncoding, length)。
+
+对于支持 Symbol.toPrimitive 的对象，会返回 Buffer.from(object\[Symbol.toPrimitive\]('string'), offsetOrEncoding。
+
 #### Buffer.from(string,encoding)
 
--   string <string> 要编码的字符串。
+-   string: string 要编码的字符串。
 
--   encoding <string> string 的字符编码。默认值: 'utf8'。
+-   encoding: string string 的字符编码。默认值: 'utf8'。
 
 创建一个包含 string 的新 Buffer。 encoding 参数指定用于将 string 转换为字节的字符编码。
 
@@ -189,7 +199,7 @@ console.log(arr.sort(Buffer.compare));
 
 -   obj: Object
 
--   返回: boolean. true 或者 false.
+-   返回: boolean (true 或者 false)
 
 如果 obj 是一个 Buffer，则返回 true，否则返回 false。
 
@@ -219,12 +229,12 @@ console.log(Buffer.isEncoding(""));
 
 这是用于缓冲池的预分配的内部 Buffer 实例的大小（以字节为单位）。 该值可以修改。
 
--   长度<integer> 默认值: 8192。
+-   长度: integer 默认值: 8192。
 
-#### buffer[index]
+#### buffer\[index\]
 
--   index <integer>
+-   index: integer
 
-索引操作符 [index] 可用于获取或设置 buf 中指定的 index 位置的八位字节。 该值指向单个字节，所以有效的值的范围是 0x00 至 0xFF（十六进制）、或 0 至 255（十进制）。
+索引操作符 \[index\] 可用于获取或设置 buf 中指定的 index 位置的八位字节。 该值指向单个字节，所以有效的值的范围是 0x00 至 0xFF（十六进制）、或 0 至 255（十进制）。
 
-该操作符继承自 Uint8Array，所以对越界访问的行为与 Uint8Array 相同。 也就是说，当 index 为负数或大于或等于 buf.length 时，则 buf[index] 返回 undefined，而如果 index 为负数或 >= buf.length 时，则 buf[index] = value 不会修改该 buffer。
+该操作符继承自 Uint8Array，所以对越界访问的行为与 Uint8Array 相同。 也就是说，当 index 为负数或大于或等于 buf.length 时，则 buf\[index\] 返回 undefined，而如果 index 为负数或 >= buf.length 时，则 buf\[index\] = value 不会修改该 buffer。
