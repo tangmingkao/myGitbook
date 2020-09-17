@@ -175,12 +175,6 @@ console.log(arr.sort(Buffer.compare));
 
 #### Buffer.from(object,offsetOrEncoding,length)
 
--   object <Object> 支持 Symbol.toPrimitive 或 valueOf() 的对象。
-
--   offsetOrEncoding <integer> | <string> 字节偏移量或字符编码。
-
--   length <integer> 长度。
-
 #### Buffer.from(string,encoding)
 
 -   string <string> 要编码的字符串。
