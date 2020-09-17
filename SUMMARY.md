@@ -6,7 +6,7 @@
     -   [Promise A+规范的实现](chapter1/section1.3.md)
 -   [Node.js 笔记](chapter2/README.md)
     -   [基本概念](chapter2/section2.1.md)
-    -   [Section2.2](chapter2/section2.2.md)
+    -   [Buffer](chapter2/section2.2.md)
 -   [每日面试题](chapter3/README.md)
     -   [Vue 相关](chapter3/section3.1.md)
     -   [Section3.2](chapter3/section3.2.md)
