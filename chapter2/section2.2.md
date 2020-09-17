@@ -181,4 +181,42 @@ console.log(arr.sort(Buffer.compare));
 
 -   length <integer> 长度。
 
-对于 valueOf() 返回值不严格等于 object 的对象，返回 Buffer.from(object.valueOf(), offsetOrEncoding, length)。对于支持 Symbol.toPrimitive 的对象，会返回 Buffer.from(object[Symbol.toPrimitive]('string'), offsetOrEncoding。
+#### Buffer.from(string,encoding)
+
+-   string <string> 要编码的字符串。
+
+-   encoding <string> string 的字符编码。默认值: 'utf8'。
+
+创建一个包含 string 的新 Buffer。 encoding 参数指定用于将 string 转换为字节的字符编码。
+
+如果 string 不是一个字符串或适用于 Buffer.from() 变量的其他类型，则抛出 TypeError。
+
+#### Buffer.isBuffer(obj)
+
+-   obj <Object>
+
+-   返回: <boolean>
+
+如果 obj 是一个 Buffer，则返回 true，否则返回 false。
+
+#### Buffer.isEncoding(encoding)
+
+-   encoding <string> 要检查的字符编码名称。
+
+-   返回: <boolean>
+
+如果 encoding 是支持的字符编码的名称，则返回 true，否则返回 false。
+
+#### Buffer.poolSize
+
+-   <integer> 默认值: 8192。
+
+这是用于缓冲池的预分配的内部 Buffer 实例的大小（以字节为单位）。 该值可以修改。
+
+#### buffer[index]
+
+-   index <integer>
+
+索引操作符 [index] 可用于获取或设置 buf 中指定的 index 位置的八位字节。 该值指向单个字节，所以有效的值的范围是 0x00 至 0xFF（十六进制）、或 0 至 255（十进制）。
+
+该操作符继承自 Uint8Array，所以对越界访问的行为与 Uint8Array 相同。 也就是说，当 index 为负数或大于或等于 buf.length 时，则 buf[index] 返回 undefined，而如果 index 为负数或 >= buf.length 时，则 buf[index] = value 不会修改该 buffer。
