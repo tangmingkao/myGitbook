@@ -241,13 +241,13 @@ console.log(Buffer.isEncoding(""));
 
 #### buf.buffer
 
--   \<ArrayBuffer\> 创建此 Buffer 对象时基于的底层 ArrayBuffer 对象。
+-   ArrayBuffer 创建此 Buffer 对象时基于的底层 ArrayBuffer 对象。
 
 不能保证此 ArrayBuffer 与原始的 Buffer 完全对应。 有关详细信息，参见 buf.byteOffset 上的说明。
 
 #### buf.byteOffset
 
--   \<integer\> Buffer 底层的 ArrayBuffer 对象的 byteOffset。
+-   integer  Buffer 底层的 ArrayBuffer 对象的 byteOffset。
 
 当 Buffer.from(ArrayBuffer, byteOffset, length) 设置了 byteOffset 或创建一个小于 Buffer.poolSize 的 Buffer 时，底层的 ArrayBuffer 的偏移量并不是从 0 开始。当直接使用 buf.buffer 访问底层的 ArrayBuffer 时可能会导致问题，因为 ArrayBuffer 的其他部分可能并不指向 Buffer 对象。当创建与 Buffer 共享其内存的 TypedArray 对象时，需要正确地指定 byteOffset。
 

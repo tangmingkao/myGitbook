@@ -7,8 +7,8 @@
 -   [Node.js 笔记](chapter2/README.md)
     -   [基本概念](chapter2/section2.1.md)
     -   [Buffer](chapter2/section2.2.md)
--   [每日面试题](chapter3/README.md)
-    -   [Vue 相关](chapter3/section3.1.md)
+-   [Vue 相关](chapter3/README.md)
+    -   [每日面试题](chapter3/section3.1.md)
     -   [Section3.2](chapter3/section3.2.md)
 -   [TypeScript](chapter4/README.md)
     - 
