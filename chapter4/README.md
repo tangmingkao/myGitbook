@@ -138,3 +138,6 @@ document.body.innerHTML = greeter(user);
     </body>
 </html>
 ```
+在浏览器里打开greeter.html运行这个应用！
+
+可选地：在Visual Studio里打开greeter.ts或者把代码复制到TypeScript playground。 将鼠标悬停在标识符上查看它们的类型。 注意在某些情况下它们的类型可以被自动地推断出来。 重新输入一下最后一行代码，看一下自动补全列表和参数列表，它们会根据DOM元素类型而变化。 将光标放在 greeter函数上，点击F12可以跟踪到它的定义。 还有一点，你可以右键点击标识，使用重构功能来重命名。
