@@ -11,6 +11,6 @@
     -   [每日面试题](chapter3/section3.1.md)
     -   [Section3.2](chapter3/section3.2.md)
 -   [TypeScript](chapter4/README.md)
-    -   [手册指南](chapter4/section4.1.md)
-    -   [Section4.2](chapter4/section4.2.md)
+    -   [基础类型](chapter4/section4.1.md)
+    -   [变量声明](chapter4/section4.2.md)
 
