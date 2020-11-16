@@ -354,5 +354,256 @@ for (let i = 0; i < 10 ; i++) {
 8
 9
 ```
-
 #### const 声明
+
+const 声明是声明变量的另一种方式。
+
+```javascript
+const numLivesForCat = 9;
+```
+
+它们与let声明相似，但是就像它的名字所表达的，它们被赋值后不能再改变。 换句话说，它们拥有与 let相同的作用域规则，但是不能对它们重新赋值。这很好理解，它们引用的值是不可变的。
+
+```javascript
+
+const numLivesForCat = 9;
+const kitty = {
+    name: "Aurora",
+    numLives: numLivesForCat,
+}
+// Error
+kitty = {
+    name: "Danielle",
+    numLives: numLivesForCat
+};
+// all "okay"
+kitty.name = "Rory";
+kitty.name = "Kitty";
+kitty.name = "Cat";
+kitty.numLives--;
+
+```
+
+除非你使用特殊的方法去避免，实际上const变量的内部状态是可修改的。 幸运的是，TypeScript允许你将对象的成员设置成只读的。 接口一章有详细说明。
+
+##### let vs const
+
+现在我们有两种作用域相似的声明方式，我们自然会问到底应该使用哪个。 与大多数泛泛的问题一样，答案是：依情况而定。
+
+使用最小特权原则，所有变量除了你计划去修改的都应该使用const。 基本原则就是如果一个变量不需要对它写入，那么其它使用这些代码的人也不能够写入它们，并且要思考为什么会需要对这些变量重新赋值。 使用 const也可以让我们更容易的推测数据的流动。
+
+跟据你的自己判断，如果合适的话，与团队成员商议一下。
+
+这个手册大部分地方都使用了let声明。
+
+
+#### 解构
+
+Another TypeScript已经可以解析其它 ECMAScript 2015 特性了。 完整列表请参见 the article on the Mozilla Developer Network。 本章，我们将给出一个简短的概述。
+
+##### 解构数组
+
+最简单的解构莫过于数组的解构赋值了：
+
+```javascript
+
+let input = [1, 2];
+let [first, second] = input;
+console.log(first); // outputs 1
+console.log(second); // outputs 2
+
+```
+
+这创建了2个命名变量 first 和 second。 相当于使用了索引，但更为方便：
+
+```javascript
+
+first = input[0];
+second = input[1];
+
+```
+
+解构作用于已声明的变量会更好：
+
+```javascript
+
+// swap variables
+[first, second] = [second, first];
+
+```
+
+作用于函数参数：
+
+```javascript
+function f([first, second]: [number, number]) {
+    console.log(first);
+    console.log(second);
+}
+f(input);
+```
+
+你可以在数组里使用...语法创建剩余变量：
+
+```javascript
+let [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+console.log(rest); // outputs [ 2, 3, 4 ]
+```
+
+当然，由于是JavaScript, 你可以忽略你不关心的尾随元素:
+
+```javascript
+let [first] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+```
+
+或其它元素：
+
+```javascript
+let [, second, , fourth] = [1, 2, 3, 4];
+```
+
+##### 对象解构
+
+你也可以解构对象：
+
+```javascript
+let o = {
+    a: "foo",
+    b: 12,
+    c: "bar"
+};
+let { a, b } = o;
+```
+
+这通过 o.a and o.b 创建了 a 和 b 。 注意，如果你不需要 c 你可以忽略它。
+
+就像数组解构，你可以用没有声明的赋值：
+
+```javascript
+({ a, b } = { a: "baz", b: 101 });
+```
+
+注意，我们需要用括号将它括起来，因为Javascript通常会将以 { 起始的语句解析为一个块。
+
+你可以在对象里使用...语法创建剩余变量：
+
+```javascript
+let { a, ...passthrough } = o;
+let total = passthrough.b + passthrough.c.length;
+
+```
+
+##### 属性重命名
+
+你也可以给属性以不同的名字：
+
+```javascript
+let { a: newName1, b: newName2 } = o;
+```
+
+这里的语法开始变得混乱。 你可以将 a: newName1 读做 "a 作为 newName1"。 方向是从左到右，好像你写成了以下样子：
+
+```javascript
+let newName1 = o.a;
+let newName2 = o.b;
+```
+
+令人困惑的是，这里的冒号不是指示类型的。 如果你想指定它的类型， 仍然需要在其后写上完整的模式。
+
+```javascript
+let {a, b}: {a: string, b: number} = o;
+```
+
+##### 默认值
+
+默认值可以让你在属性为 undefined 时使用缺省值：
+
+```javascript
+function keepWholeObject(wholeObject: { a: string, b?: number }) {
+    let { a, b = 1001 } = wholeObject;
+}
+```
+
+现在，即使 b 为 undefined ， keepWholeObject 函数的变量 wholeObject 的属性 a 和 b 都会有值。
+
+##### 函数声明
+
+解构也能用于函数声明。 看以下简单的情况：
+
+```javascript
+type C = { a: string, b?: number }
+function f({ a, b }: C): void {
+    // ...
+}
+```
+
+但是，通常情况下更多的是指定默认值，解构默认值有些棘手。 首先，你需要在默认值之前设置其格式。
+
+```javascript
+function f({ a="", b=0 } = {}): void {
+    // ...
+}
+f();
+```
+
+> 上面的代码是一个类型推断的例子，将在本手册后文介绍。
+
+其次，你需要知道在解构属性上给予一个默认或可选的属性用来替换主初始化列表。 要知道 C 的定义有一个 b 可选属性：
+
+```javascript
+function f({ a, b = 0 } = { a: "" }): void {
+    // ...
+}
+f({ a: "yes" }); // ok, default b = 0
+f(); // ok, default to {a: ""}, which then defaults b = 0
+f({}); // error, 'a' is required if you supply an argument
+
+```
+
+要小心使用解构。 从前面的例子可以看出，就算是最简单的解构表达式也是难以理解的。 尤其当存在深层嵌套解构的时候，就算这时没有堆叠在一起的重命名，默认值和类型注解，也是令人难以理解的。 解构表达式要尽量保持小而简单。 你自己也可以直接使用解构将会生成的赋值表达式。
+
+##### 展开
+
+展开操作符正与解构相反。 它允许你将一个数组展开为另一个数组，或将一个对象展开为另一个对象。 例如：
+
+```javascript
+let first = [1, 2];
+let second = [3, 4];
+let bothPlus = [0, ...first, ...second, 5];
+
+```
+
+这会令bothPlus的值为[0, 1, 2, 3, 4, 5]。 展开操作创建了 first和second的一份浅拷贝。 它们不会被展开操作所改变。
+
+你还可以展开对象：
+
+```javascript
+let defaults = { food: "spicy", price: "$$", ambiance: "noisy" };
+let search = { ...defaults, food: "rich" };
+```
+
+search的值为{ food: "rich", price: "$$", ambiance: "noisy" }。 对象的展开比数组的展开要复杂的多。 像数组展开一样，它是从左至右进行处理，但结果仍为对象。 这就意味着出现在展开对象后面的属性会覆盖前面的属性。 因此，如果我们修改上面的例子，在结尾处进行展开的话：
+
+```javascript
+let defaults = { food: "spicy", price: "$$", ambiance: "noisy" };
+let search = { food: "rich", ...defaults };
+```
+
+那么，defaults里的food属性会重写food: "rich"，在这里这并不是我们想要的结果。
+
+对象展开还有其它一些意想不到的限制。 首先，它仅包含对象 自身的可枚举属性。 大体上是说当你展开一个对象实例时，你会丢失其方法：
+
+```javascript
+class C {
+  p = 12;
+  m() {
+  }
+}
+let c = new C();
+let clone = { ...c };
+clone.p; // ok
+clone.m(); // error!
+
+```
+其次，TypeScript编译器不允许展开泛型函数上的类型参数。 这个特性会在TypeScript的未来版本中考虑实现。
