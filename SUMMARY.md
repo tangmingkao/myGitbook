@@ -4,6 +4,7 @@
     -   [基本数据结构](chapter1/section1.1.md)
     -   [Promise A+规范](chapter1/section1.2.md)
     -   [Promise A+规范的实现](chapter1/section1.3.md)
+    -   [前端代码规范文档](chapter1/section1.4.md)
 -   [Node.js 笔记](chapter2/README.md)
     -   [基本概念](chapter2/section2.1.md)
     -   [Buffer](chapter2/section2.2.md)
@@ -32,4 +33,4 @@
     -   [装饰器](chapter4/section4.19.md)
     -   [Mixins](chapter4/section4.20.md)
     -   [三斜线指令](chapter4/section4.21.md)
-    -   [JavaScript文件类型检查](chapter4/section4.22.md)
+    -   [JavaScript 文件类型检查](chapter4/section4.22.md)

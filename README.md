@@ -42,6 +42,8 @@ npm install -g gitbook-cli
 
 这种错误一般时一些版本不兼容导致的。例如上面的报错 node 的版本和 gitbook-cli 中安装的 graceful-fs 的版本不兼容导致的。gitbook-cli 默认安装的 graceful-fs 的版本时 4.2.4 。需要降级到 4.1.1 的版本。
 
+> 注意：是 npm 模块里的 graceful-fs 不兼容
+
 ## 基本使用
 
 gitbook 的基本用法非常简单，基本上就只有两步：
