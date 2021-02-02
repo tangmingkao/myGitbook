@@ -4,7 +4,8 @@
     "description": "gitbook 的安装非常简单，详细指南可以参考 gitbook 文档。",
     "main": "index.js",
     "dependencies": {
-        "gh-pages": "^2.2.0"
+        "gh-pages": "^2.2.0",
+        "graceful-fs": "^4.1.1"
     },
     "devDependencies": {},
     "scripts": {
