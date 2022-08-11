@@ -162,3 +162,4 @@ npm run deploy
 
 打开地址
 https://username.github.io/projectName(myGitbook)
+https://tangmingkao.github.io/myGitbook
