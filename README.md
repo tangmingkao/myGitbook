@@ -45,7 +45,8 @@ npm install -g gitbook-cli
 > 注意：是 npm 模块里的 graceful-fs 不兼容
 
 如果报 Error: tunneling socket could not be established, cause=read ECONNRESET
-执行: rm ~/.npmrc
+
+执行: rm ~/.npmrc 
 
 ## 基本使用
 
@@ -165,4 +166,5 @@ npm run deploy
 
 打开地址
 https://username.github.io/projectName(myGitbook)
+
 https://tangmingkao.github.io/myGitbook
