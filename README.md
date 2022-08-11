@@ -44,6 +44,9 @@ npm install -g gitbook-cli
 
 > 注意：是 npm 模块里的 graceful-fs 不兼容
 
+如果报 Error: tunneling socket could not be established, cause=read ECONNRESET
+执行: rm ~/.npmrc
+
 ## 基本使用
 
 gitbook 的基本用法非常简单，基本上就只有两步：
